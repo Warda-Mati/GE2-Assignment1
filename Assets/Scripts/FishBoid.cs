@@ -23,6 +23,12 @@ public class FishBoid : MonoBehaviour
         public float slowingDistance = 10;
         public Path path;
         public int counter = 0;
+
+        public bool pursueEnabled = false;
+        public FishBoid pursueTarget;
+
+        public bool followPathEnabled = false;
+        
     
         public void OnDrawGizmos()
         {
@@ -67,6 +73,17 @@ public class FishBoid : MonoBehaviour
     
             return desired - velocity;
         }
+        
+        public Vector3 Pursue(FishBoid pursueTarget)
+        {
+            float dist = Vector3.Distance(pursueTarget.transform.position, transform.position);
+
+            float time = dist / maxSpeed;
+
+            Vector3 pursueTargetPos = pursueTarget.transform.position + pursueTarget.velocity * time;
+
+            return Seek(pursueTargetPos);
+        }
     
         public Vector3 CalculateForce()
         {
@@ -80,13 +97,25 @@ public class FishBoid : MonoBehaviour
                 f += Seek(seekTarget);
             }
     
-            if (arriveEnabled)
+            if (arriveEnabled )
             {
                 if (arriveTargetTransform != null)
                 {
                     arriveTarget = arriveTargetTransform.position;                
                 }
                 f += Arrive(arriveTarget);
+            }
+            
+            if (pursueEnabled)
+            {
+                f += Pursue(pursueTarget);
+            }
+
+            if (followPathEnabled)
+            {
+                seekEnabled = false;
+                arriveEnabled = false;
+                f += followPath();
             }
     
             return f;
@@ -112,8 +141,8 @@ public class FishBoid : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-            //force = CalculateForce();
-            force = followPath();
+            force = CalculateForce();
+            //force = followPath();
             acceleration = force / mass;
             velocity = velocity + acceleration * Time.deltaTime;
             transform.position = transform.position + velocity * Time.deltaTime;
