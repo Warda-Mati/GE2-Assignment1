@@ -121,6 +121,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &86282229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+    type: 3}
+  m_PrefabInstance: {fileID: 300403824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &86282230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86282229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca1c24219457b94e97d0e74c3170f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  speed: 0
+  acceleration: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  maxSpeed: 5
+  maxForce: 10
+  mass: 1
+  seekEnabled: 0
+  seekTargetTransform: {fileID: 847166664}
+  seekTarget: {x: 0, y: 0, z: 0}
+  arriveEnabled: 0
+  arriveTargetTransform: {fileID: 847166664}
+  arriveTarget: {x: 0, y: 0, z: 0}
+  slowingDistance: 10
+  path: {fileID: 776682419}
+  counter: 0
+  pursueEnabled: 1
+  pursueTarget: {fileID: 1269059605}
+  followPathEnabled: 0
 --- !u!1 &172630966
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +287,75 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8ff003ad363c88e4cb2dbaffef6fc984, type: 3}
   - {fileID: 2800000, guid: ecfc22c135e6a5a449f2833774b8116d, type: 3}
   - {fileID: 2800000, guid: 3a0362b956ec2c14190eb7ce0293c7c5, type: 3}
+--- !u!1001 &300403824
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3866908435750393346, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_Name
+      value: Fish 0 Pref (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.76669
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890879666099194447, guid: e77b7e344112b5f4c8d708dc75ad5c16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e77b7e344112b5f4c8d708dc75ad5c16, type: 3}
 --- !u!1001 &375846593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,7 +720,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f75eb16653d469418b251de44aab3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!4 &776682420
 Transform:
   m_ObjectHideFlags: 0
@@ -972,6 +1083,9 @@ MonoBehaviour:
   slowingDistance: 10
   path: {fileID: 776682419}
   counter: 0
+  pursueEnabled: 0
+  pursueTarget: {fileID: 0}
+  followPathEnabled: 1
 --- !u!1 &1383016727
 GameObject:
   m_ObjectHideFlags: 0
