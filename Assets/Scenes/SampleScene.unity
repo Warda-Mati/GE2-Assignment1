@@ -139,25 +139,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca1c24219457b94e97d0e74c3170f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  speed: 0
-  acceleration: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  mass: 1
+  damping: 0.01
+  banking: 0.1
   maxSpeed: 5
   maxForce: 10
+--- !u!114 &86282234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86282229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241c5b9c70e05674899a68b109ae9673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  target: {fileID: 1269059605}
+--- !u!114 &86282235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86282229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca1c24219457b94e97d0e74c3170f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
   mass: 1
-  seekEnabled: 0
-  seekTargetTransform: {fileID: 847166664}
-  seekTarget: {x: 0, y: 0, z: 0}
-  arriveEnabled: 0
-  arriveTargetTransform: {fileID: 847166664}
-  arriveTarget: {x: 0, y: 0, z: 0}
-  slowingDistance: 10
-  path: {fileID: 776682419}
-  counter: 0
-  pursueEnabled: 1
-  pursueTarget: {fileID: 1269059605}
-  followPathEnabled: 0
+  damping: 0.01
+  banking: 0.1
+  maxSpeed: 2
+  maxForce: 10
 --- !u!1 &172630966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,25 +1092,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca1c24219457b94e97d0e74c3170f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  speed: 0
-  acceleration: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  mass: 1
+  damping: 0.01
+  banking: 0.1
   maxSpeed: 5
   maxForce: 10
-  mass: 1
-  seekEnabled: 1
-  seekTargetTransform: {fileID: 847166664}
-  seekTarget: {x: 0, y: 0, z: 0}
-  arriveEnabled: 1
-  arriveTargetTransform: {fileID: 847166664}
-  arriveTarget: {x: 0, y: 0, z: 0}
-  slowingDistance: 10
+--- !u!114 &1269059606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269059604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92640eac3f1d2d643b721b5a0b43dbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
   path: {fileID: 776682419}
-  counter: 0
-  pursueEnabled: 0
-  pursueTarget: {fileID: 0}
-  followPathEnabled: 1
 --- !u!1 &1383016727
 GameObject:
   m_ObjectHideFlags: 0
