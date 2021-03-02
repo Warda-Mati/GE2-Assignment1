@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Path : MonoBehaviour
+public class FishPath : MonoBehaviour
 {
     // 4 points 
     public List<Vector3> waypoints;

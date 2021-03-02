@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowPath : SteeringBehavior
 {
-    public Path path;
+    public FishPath path;
     private int counter = 0;
     public override Vector3 Calculate()
     {
