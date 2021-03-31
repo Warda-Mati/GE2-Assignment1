@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1243566453234613096}
   - component: {fileID: 1243566453234613102}
   - component: {fileID: 1243566453234613097}
+  - component: {fileID: 6170016595878700839}
   m_Layer: 0
   m_Name: ClownFish
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243566453234613099}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8af249246a182a48b72baa0a064ea42, type: 3}
   m_Name: 
@@ -73,6 +74,27 @@ MonoBehaviour:
   jitter: 100
   target: {x: 0, y: 0, z: 0}
   worldTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &6170016595878700839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243566453234613099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6a9eb9c9405b34abd369b317650f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  frequency: 0.3
+  radius: 10
+  theta: 0
+  amplitude: 80
+  distance: 5
+  axis: 0
 --- !u!1 &1243566453973166214
 GameObject:
   m_ObjectHideFlags: 0
