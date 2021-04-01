@@ -22431,6 +22431,7 @@ MonoBehaviour:
   area: {x: 0, y: 0, z: 0}
   allFish: []
   allfishes: []
+  radius: 10
 --- !u!4 &2046390659
 Transform:
   m_ObjectHideFlags: 0

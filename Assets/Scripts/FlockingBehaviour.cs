@@ -9,7 +9,7 @@ public class FlockingBehaviour : SteeringBehavior
     
     public override Vector3 Calculate()
     {
-        return Seperation() + Cohesion(); //Alignment();
+        return Seperation() + Cohesion() + Alignment();
     }
 
     public Vector3 Seperation()
@@ -55,8 +55,6 @@ public class FlockingBehaviour : SteeringBehavior
                 
             }
         }
-        Debug.Log(steeringForce);
-        checkNaN(steeringForce);
         return steeringForce;
     }
 
@@ -77,7 +75,7 @@ public class FlockingBehaviour : SteeringBehavior
         if (neighbourCount > 0)
         {
             steeringForce /= (float) neighbourCount;
-            steeringForce = steeringForce - transform.forward;
+            steeringForce = steeringForce - transform.position;
         }
        
         return steeringForce;
