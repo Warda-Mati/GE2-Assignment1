@@ -9,7 +9,7 @@ public class FlockingBehaviour : SteeringBehavior
     
     public override Vector3 Calculate()
     {
-        return Seperation() + Cohesion() + Alignment();
+        return Seperation() + Cohesion(); //Alignment();
     }
 
     public Vector3 Seperation()
@@ -18,14 +18,13 @@ public class FlockingBehaviour : SteeringBehavior
         for (int i = 0; i < agents.Count; i++)
         {
             GameObject entity = agents[i];
-            if (entity != null)
+            if (entity != gameObject)
             {
                 Vector3 toEntity = transform.position - entity.transform.position;
                 steeringForce += Vector3.Normalize(toEntity) / toEntity.magnitude;
             }
         }
-
-        checkNaN(steeringForce);
+        
         return steeringForce;
     }
 
@@ -42,7 +41,6 @@ public class FlockingBehaviour : SteeringBehavior
                 neighbourCount++;
             }   
         }
-
         if (neighbourCount > 0)
         {
             centreOfMass /= (float)neighbourCount;
@@ -52,10 +50,12 @@ public class FlockingBehaviour : SteeringBehavior
             }
             else
             {
+                
                 steeringForce = Vector3.Normalize(boid.SeekForce(centreOfMass));     
+                
             }
         }
-
+        Debug.Log(steeringForce);
         checkNaN(steeringForce);
         return steeringForce;
     }

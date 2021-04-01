@@ -12,6 +12,8 @@ public class Flocking : MonoBehaviour
     public GameObject[] allFish;
 
     public List<GameObject> allfishes;
+
+    public int radius;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,10 @@ public class Flocking : MonoBehaviour
         allfishes = new List<GameObject>();
         for (int i = 0; i < flockSize; i++)
         {
-            Vector3 pos = Random.insideUnitSphere;
-            pos = new Vector3(pos.x * area.x, pos.y * area.y, pos.y * area.y);
+            Vector3 pos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
             Vector3 fishPos = transform.position + pos;
             allFish[i] = Instantiate(fish, fishPos, transform.rotation);
+            allFish[i].name = "Fish " + i;
             allFish[i].AddComponent<FlockingBehaviour>();
             allfishes.Add(allFish[i]);
         }
