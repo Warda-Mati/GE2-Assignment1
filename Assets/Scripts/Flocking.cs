@@ -25,6 +25,7 @@ public class Flocking : MonoBehaviour
             Vector3 fishPos = transform.position + pos;
             allFish[i] = Instantiate(fish, fishPos, transform.rotation);
             allFish[i].name = "Fish " + i;
+            allFish[i].tag = "fish";
             allFish[i].AddComponent<FlockingBehaviour>();
             allfishes.Add(allFish[i]);
         }
