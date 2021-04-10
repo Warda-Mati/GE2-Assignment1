@@ -15,7 +15,7 @@ public class FishPath : MonoBehaviour
         
         for (int i = 0; i < transform.childCount; i++)
         {
-            waypoints.Add(this.gameObject.transform.GetChild(i).position); 
+            waypoints.Add(gameObject.transform.GetChild(i).position); 
         }
     }
 
@@ -28,15 +28,7 @@ public class FishPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(waypoints[0], waypoints[1]);
-        Gizmos.DrawLine(waypoints[1], waypoints[2]);
-        Gizmos.DrawLine(waypoints[2], waypoints[0]);
        
     }
+    
 }

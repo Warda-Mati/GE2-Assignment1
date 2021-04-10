@@ -15,7 +15,7 @@ public class Flocking : MonoBehaviour
 
     public int radius;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         allFish = new GameObject[flockSize];
         allfishes = new List<GameObject>();
