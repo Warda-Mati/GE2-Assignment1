@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shark: {fileID: 0}
+  withinShark: 0
 --- !u!135 &1157431658262640394
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fa6f3ed1df2e94ebb182de4702aeb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 50
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
   targetGameObject: {fileID: 0}

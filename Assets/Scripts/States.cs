@@ -43,7 +43,7 @@ class FleeState : State
     {
         if (Vector3.Distance(
             owner.GetComponent<Flee>().targetGameObject.transform.position,
-            owner.transform.position) > 20)
+            owner.transform.position) > 40)
         {
             owner.ChangeState(new MoveState());
         }

@@ -52,6 +52,16 @@ public class FishBoid : MonoBehaviour
         desired *= maxSpeed;
         return desired - velocity;
     }
+    
+    public Vector3 SeekForceHoriz(Vector3 target)
+    {
+        Vector3 desired = target - transform.position;
+        desired.Normalize();
+        desired *= (maxSpeed*3);
+        Vector2 horizDesired = new Vector2(desired.x, desired.z);
+        Vector2 horizVelocity = new Vector2(velocity.x, velocity.z);
+        return horizDesired - horizVelocity;
+    }
 
     public Vector3 ArriveForce(Vector3 target, float slowingDistance = 40.0f)
     {
