@@ -297,7 +297,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 23e6164808749b440ad7c2ea97489e14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23e6164808749b440ad7c2ea97489e14,
         type: 3}
@@ -22431,7 +22431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 1243566453234613099, guid: 41b586143e5ac034c8605ce06d5686b3, type: 3}
-  flockSize: 5
+  flockSize: 15
   area: {x: 0, y: 0, z: 0}
   allFish: []
   allfishes: []
@@ -22460,12 +22460,27 @@ PrefabInstance:
     - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
         type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.4966736
+      value: 16.8
       objectReference: {fileID: 0}
     - target: {fileID: 7076416997151898521, guid: 710ef5bf9dec4e349ac3791bd68a27c0,
         type: 3}
@@ -22696,5 +22711,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.62242
-  m_Center: {x: 0.00041770935, y: 0, z: -0.23468828}
+  m_Radius: 5.2045927
+  m_Center: {x: 1.4182442, y: 0, z: -0.23468828}
