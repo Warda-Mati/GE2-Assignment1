@@ -12,7 +12,6 @@ public class FishController : MonoBehaviour
     {
         if (c.tag == "shark")
         {
-            Debug.Log("collided");
             withinShark = true;
         }
     }
