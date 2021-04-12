@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class DolphinFlip : MonoBehaviour
     public float speed = 0.2f;
 
     private Quaternion rot;
+
+    public GameObject splashPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +33,19 @@ public class DolphinFlip : MonoBehaviour
   
         transform.position += (transform.forward * (moveSpeed*4) * Time.deltaTime);
     }
-    
- 
- 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "water")
+        {
+            Debug.Log("Water Collided");
+            Vector3 pos = new Vector3(transform.position.x, other.transform.position.y+0.5f, transform.position.z);
+            GameObject splash = Instantiate(splashPrefab, pos, Quaternion.Euler(90,0,0));
+            splash.GetComponent<ParticleSystem>().Play();
+        }
+    }
+
+
     /*IEnumerator RotateImage()
     {
         float moveSpeed = 0.00005f;
