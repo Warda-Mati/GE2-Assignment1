@@ -7,8 +7,8 @@ public class DolphinFlip : MonoBehaviour
 {
     public float rotation = 90;
     public bool rotating;
-    public float speed = 0.2f;
-
+    public float moveSpeed = 0.2f;
+    public float rotSpeed;
     private Quaternion rot;
 
     public GameObject splashPrefab;
@@ -25,13 +25,12 @@ public class DolphinFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-        float moveSpeed = 0.15f;
+        
         float y = -270;
         Vector3 target = new Vector3(y,0,0);
-        transform.localEulerAngles = Vector3.Lerp(transform.position,target, moveSpeed * Time.time);
+        transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * Time.time);
   
-        transform.position += (transform.forward * (moveSpeed*4) * Time.deltaTime);
+        transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,7 +38,7 @@ public class DolphinFlip : MonoBehaviour
         if (other.tag == "water")
         {
             Debug.Log("Water Collided");
-            Vector3 pos = new Vector3(transform.position.x, other.transform.position.y+0.5f, transform.position.z);
+            Vector3 pos = new Vector3(transform.position.x, other.transform.position.y+0.6f, transform.position.z);
             GameObject splash = Instantiate(splashPrefab, pos, Quaternion.Euler(90,0,0));
             splash.GetComponent<ParticleSystem>().Play();
         }

@@ -55,3 +55,68 @@ class FleeState : State
         owner.GetComponent<FlockingBehaviour>().enabled = true;
     }
 }
+
+class FollowPathState : State
+{
+    public override void Enter()
+    {
+       
+        owner.GetComponent<FollowPath>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<DolphinController>().goingToDive)
+        {
+            owner.ChangeState(new MovetoDive());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<FollowPath>().enabled = false;
+    }
+}
+
+class MovetoDive : State
+{
+    public override void Enter()
+    {
+        //owner.GetComponent<MovetoLand>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<DolphinController>().diving)
+        {
+            owner.ChangeState(new DiveState());
+        }
+    }
+
+    public override void Exit()
+    {
+        //owner.GetComponent<MovetoLand>().enabled = false;
+    }
+}
+
+class DiveState : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<DolphinFlip>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<DolphinController>().splashesCounter == 2)
+        {
+            owner.ChangeState(new FollowPathState());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<DolphinFlip>().enabled = false;
+    }
+}
+
