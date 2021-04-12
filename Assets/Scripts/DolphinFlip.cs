@@ -22,11 +22,13 @@ public class DolphinFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveSpeed = 0.2f;
+      
+        float moveSpeed = 0.15f;
         float y = -270;
         Vector3 target = new Vector3(y,0,0);
-        //Debug.Log(target);
-        transform.eulerAngles = Vector3.Lerp(transform.position,target, moveSpeed * Time.time);
+        transform.localEulerAngles = Vector3.Lerp(transform.position,target, moveSpeed * Time.time);
+  
+        transform.position += (transform.forward * (moveSpeed*4) * Time.deltaTime);
     }
     
  
