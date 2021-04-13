@@ -5,38 +5,46 @@ using UnityEngine;
 
 public class DolphinFlip : MonoBehaviour
 {
-    public float rotation = 90;
-    public bool rotating;
+  
     public float moveSpeed = 0.2f;
     public float rotSpeed;
     private Quaternion rot;
 
     public GameObject splashPrefab;
+
+    public float time;
     // Start is called before the first frame update
+  
+
     void Start()
     {
-        rot = new Quaternion(rotation, 0.0f, 0.0f,0.0f);
+        time = 0;
+        Debug.Log("starting time is now " + time);
         //StartCoroutine(RotateImage());
         
         
         //Debug.Log(transform.rotation.x + " > " + y);
     }
 
+    public void OnEnable()
+    {
+        time = 0;
+        Debug.Log("enabling time is now " + time);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void flip()
-    {
         float y = -270;
-        Vector3 target = new Vector3(y,0,0);
-        transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * Time.time);
-  
+        time += Time.deltaTime;
+        Debug.Log("Time is " + time);
+        Debug.Log("Now is " + Time.time);
+        Vector3 target = new Vector3(y,transform.position.y,transform.position.z);
+        transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * time);
         transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);
     }
 
+   
    
 
 

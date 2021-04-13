@@ -23533,10 +23533,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664a69602560264429304533c0ba49c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leader: 0
   goingToDive: 0
   diving: 0
   splashesCounter: 0
+  splashPrefab: {fileID: 0}
 --- !u!114 &1999829994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23576,6 +23576,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &1999829996
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999829992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.158701
+  m_Center: {x: -0.011762501, y: -0.023656964, z: 0.053977728}
 --- !u!114 &1999829997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23592,6 +23605,54 @@ MonoBehaviour:
   force: {x: 0, y: 0, z: 0}
   boid: {fileID: 0}
   path: {fileID: 1629329699}
+--- !u!114 &1999829998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999829992}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66fb272572850f40a0c93df49e824b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  targetGameObject: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+--- !u!114 &1999829999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999829992}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329de057987f46c59567bc52fb7cbb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  water: {fileID: 0}
+--- !u!114 &1999830000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999829992}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d78fa6009e5014d9a811ed80580982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: 90
+  rotating: 0
+  moveSpeed: 0.2
+  rotSpeed: 0
+  splashPrefab: {fileID: 0}
 --- !u!1 &2046390657
 GameObject:
   m_ObjectHideFlags: 0

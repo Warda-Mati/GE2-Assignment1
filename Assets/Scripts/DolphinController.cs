@@ -18,7 +18,7 @@ public class DolphinController : MonoBehaviour
 
     void Start()
     {
-        camera = GameObject.FindWithTag("camera");
+        camera = GameObject.FindWithTag("MainCamera");
         StartCoroutine(goToDive());
     }
 
@@ -36,8 +36,9 @@ public class DolphinController : MonoBehaviour
             if (camera.GetComponent<CameraFollow>().cameraTarget[camera.GetComponent<CameraFollow>().index] =
                 gameObject)
             {
-                if (Input.GetKey("P"))
+                if (Input.GetKey(KeyCode.P))
                 {
+                    Debug.Log("Got it");
                     goingToDive = true;
                 }
 
@@ -52,12 +53,13 @@ public class DolphinController : MonoBehaviour
     {
         if (other.tag == "water")
         {
+            goingToDive = false;
             if (splashesCounter < 2)
             {
                 GetComponent<Seek>().enabled = false;
                 diving = true;
                 splashesCounter += 1;
-                Debug.Log("Water Collided");
+                //Debug.Log("Water Collided");
                 Vector3 pos = new Vector3(transform.position.x, other.transform.position.y+0.6f, transform.position.z);
                 GameObject splash = Instantiate(splashPrefab, pos, Quaternion.Euler(90,0,0));
                 splash.GetComponent<ParticleSystem>().Play();
