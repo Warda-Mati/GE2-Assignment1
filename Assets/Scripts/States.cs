@@ -74,6 +74,7 @@ class FollowPathState : State
 
     public override void Exit()
     {
+        
         owner.GetComponent<FollowPath>().enabled = false;
     }
 }
@@ -82,7 +83,7 @@ class MovetoDive : State
 {
     public override void Enter()
     {
-        //owner.GetComponent<MovetoLand>().enabled = true;
+        owner.GetComponent<MoveToLand>().enabled = true;
     }
 
     public override void Think()
@@ -95,7 +96,7 @@ class MovetoDive : State
 
     public override void Exit()
     {
-        //owner.GetComponent<MovetoLand>().enabled = false;
+        owner.GetComponent<MoveToLand>().enabled = false;
     }
 }
 

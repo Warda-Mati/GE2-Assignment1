@@ -26,6 +26,10 @@ public class DolphinFlip : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void flip()
+    {
         float y = -270;
         Vector3 target = new Vector3(y,0,0);
         transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * Time.time);
@@ -33,16 +37,7 @@ public class DolphinFlip : MonoBehaviour
         transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "water")
-        {
-            Debug.Log("Water Collided");
-            Vector3 pos = new Vector3(transform.position.x, other.transform.position.y+0.6f, transform.position.z);
-            GameObject splash = Instantiate(splashPrefab, pos, Quaternion.Euler(90,0,0));
-            splash.GetComponent<ParticleSystem>().Play();
-        }
-    }
+   
 
 
     /*IEnumerator RotateImage()

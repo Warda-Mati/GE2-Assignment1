@@ -7,6 +7,9 @@ TagManager:
   - shark
   - fish
   - flock
+  - Fire
+  - FxTemporaire
+  - water
   layers:
   - Default
   - TransparentFX
