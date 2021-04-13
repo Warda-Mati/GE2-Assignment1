@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class DolphinController : MonoBehaviour
     public GameObject splashPrefab;
     private GameObject camera;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        GetComponent<StateMachine>().ChangeState(new FollowPathState());
+    }
+
     void Start()
     {
         camera = GameObject.FindWithTag("camera");
