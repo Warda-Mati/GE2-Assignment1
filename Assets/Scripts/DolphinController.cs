@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DolphinController : MonoBehaviour
 {
-    public bool leader;
     public bool goingToDive;
     public bool diving;
     public int splashesCounter;
