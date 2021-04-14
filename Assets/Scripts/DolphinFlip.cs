@@ -19,7 +19,6 @@ public class DolphinFlip : MonoBehaviour
     void Start()
     {
         time = 0;
-        Debug.Log("starting time is now " + time);
         //StartCoroutine(RotateImage());
         
         
@@ -29,7 +28,6 @@ public class DolphinFlip : MonoBehaviour
     public void OnEnable()
     {
         time = 0;
-        Debug.Log("enabling time is now " + time);
     }
 
     // Update is called once per frame

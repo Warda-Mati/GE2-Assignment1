@@ -44,7 +44,7 @@ public class CameraFollow : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetKey("l"))
+            if (Input.GetKey(KeyCode.L))
                 index = (index+ 1) % cameraTarget.Count;
 
             yield return new WaitForSeconds(0.2f);
