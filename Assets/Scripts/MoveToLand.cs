@@ -14,15 +14,25 @@ public class MoveToLand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 pos = new Vector3(Random.Range(-radius, radius), water.transform.position.y - 0.5f, Random.Range(-radius, radius));
-        GetComponent<Seek>().enabled = true;
-        GetComponent<Seek>().target = pos;
+       MovetoLand();
+    
+    }
 
+    private void OnEnable()
+    {
+        MovetoLand();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void MovetoLand()
+    {
+        Vector3 pos = new Vector3(Random.Range(-radius, radius), water.transform.position.y - 0.5f, Random.Range(-radius, radius));
+        GetComponent<Seek>().enabled = true;
+        GetComponent<Seek>().target = pos;
     }
 }

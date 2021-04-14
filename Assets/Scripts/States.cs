@@ -109,7 +109,7 @@ class DiveState : State
 
     public override void Think()
     {
-        if (owner.GetComponent<DolphinController>().splashesCounter == 10)
+        if (owner.GetComponent<DolphinController>().splashesCounter == 3)
         {
             owner.ChangeState(new FollowPathState());
         }

@@ -35,8 +35,6 @@ public class DolphinFlip : MonoBehaviour
     {
         float y = -270;
         time += Time.deltaTime;
-        Debug.Log("Time is " + time);
-        Debug.Log("Now is " + Time.time);
         Vector3 target = new Vector3(y,transform.position.y,transform.position.z);
         transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * time);
         transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);

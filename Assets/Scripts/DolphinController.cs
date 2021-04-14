@@ -33,7 +33,7 @@ public class DolphinController : MonoBehaviour
     {
         while (true)
         {
-            if (camera.GetComponent<CameraFollow>().cameraTarget[camera.GetComponent<CameraFollow>().index] =
+            if (camera.GetComponent<CameraFollow>().cameraTarget[camera.GetComponent<CameraFollow>().index] ==
                 gameObject)
             {
                 if (Input.GetKey(KeyCode.P))
@@ -54,7 +54,7 @@ public class DolphinController : MonoBehaviour
         if (other.tag == "water")
         {
             goingToDive = false;
-            if (splashesCounter < 2)
+            if (splashesCounter < 3)
             {
                 GetComponent<Seek>().enabled = false;
                 diving = true;
