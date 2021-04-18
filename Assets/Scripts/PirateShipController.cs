@@ -7,6 +7,8 @@ public class PirateShipController : MonoBehaviour
     public GameObject CannonObj;
     public GameObject cannonBallPrefab;
     private List<Transform> cannons = new List<Transform>();
+
+    public GameObject fireParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class PirateShipController : MonoBehaviour
         while (true)
         {
             Transform chosenCannon = cannons[Random.Range (0, cannons.Count)];
+            Instantiate(fireParticle, chosenCannon.position, chosenCannon.rotation);
             Instantiate(cannonBallPrefab, chosenCannon.position, chosenCannon.rotation);
             yield return new WaitForSeconds(1);
         }
