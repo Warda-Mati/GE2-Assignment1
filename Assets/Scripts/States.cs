@@ -121,3 +121,51 @@ class DiveState : State
     }
 }
 
+class ShipMoving : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<NoiseWander>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<PirateShipController>().piratesNearby)
+        {
+            owner.ChangeState(new AttackShip());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<NoiseWander>().enabled = false;
+    }
+}
+
+class AttackShip : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<MoveToAttack>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<PirateShipController>().piratesNearby == false)
+        {
+            owner.ChangeState(new ShipMoving());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<MoveToAttack>().enabled = false;
+    }
+}
+
+
+
+
+
+
+

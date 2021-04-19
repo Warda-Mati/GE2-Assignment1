@@ -10,6 +10,7 @@ TagManager:
   - Fire
   - FxTemporaire
   - water
+  - ship
   layers:
   - Default
   - TransparentFX
