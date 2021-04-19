@@ -27,7 +27,11 @@ public class MoveToAttack : MonoBehaviour
         float y = rotationToAttack;
         time += Time.deltaTime;
         Vector3 target = new Vector3(0,0,0);
-        transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.position,target, rotSpeed * time));
+        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.identity, rotSpeed * time);
+        if (transform.rotation == Quaternion.identity)
+        {
+            GetComponent<FishBoid>().maxSpeed = 0;
+        }
         //transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);
     }
 }
