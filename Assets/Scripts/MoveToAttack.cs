@@ -31,6 +31,7 @@ public class MoveToAttack : MonoBehaviour
         if (transform.rotation == Quaternion.identity)
         {
             GetComponent<FishBoid>().maxSpeed = 0;
+            GetComponent<FireCannon>().enabled = true;
         }
         //transform.position += (transform.forward * (moveSpeed) * Time.deltaTime);
     }
