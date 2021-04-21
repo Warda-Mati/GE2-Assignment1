@@ -2,38 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inverter : Node
+public class Selector : Node
 {
-    private Node child;
+    protected List<Node> childNodes = new List<Node>();
 
-    public Node node
+    public Selector(List<Node>childNodes)
     {
-        get { return child; }
-    }
-
-    public Inverter(Node node)
-    {
-        child = node;
+        this.childNodes = childNodes;
     }
 
     public override NodeState Evaluate()
     {
-        switch (child.Evaluate())
+        foreach (Node node in childNodes)
         {
-            case NodeState.FAILURE:
-                _state = NodeState.SUCCESS;
-                return _state;
-            case NodeState.SUCCESS:
-                _state = NodeState.FAILURE;
-                return _state;
-            case NodeState.RUNNING:
-                _state = NodeState.RUNNING;
-                return _state;
+            switch (node.Evaluate())
+            {
+                case NodeState.FAILURE:
+                    continue;
+                case NodeState.SUCCESS:
+                    _state = NodeState.SUCCESS;
+                    return _state;
+                case NodeState.RUNNING:
+                    _state = NodeState.RUNNING;
+                    return _state;
+                default:
+                    continue;
+            }
         }
-        _state = NodeState.SUCCESS;
+
+        _state = NodeState.FAILURE;
         return _state;
     }
-
-       
-    
 }
