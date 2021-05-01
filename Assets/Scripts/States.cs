@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// fish
 class MoveState : State
 {
     
@@ -27,6 +27,7 @@ class MoveState : State
     }
 }
 
+// fish
 class FleeState : State
 {
     public override void Enter()
@@ -56,6 +57,7 @@ class FleeState : State
     }
 }
 
+// dolphin and shark
 class FollowPathState : State
 {
     public override void Enter()
@@ -79,6 +81,8 @@ class FollowPathState : State
     }
 }
 
+// dolphin
+/*
 class MovetoDive : State
 {
     public override void Enter()
@@ -100,6 +104,8 @@ class MovetoDive : State
     }
 }
 
+
+
 class DiveState : State
 {
     public override void Enter()
@@ -119,8 +125,9 @@ class DiveState : State
     {
         owner.GetComponent<DolphinFlip>().enabled = false;
     }
-}
+}*/
 
+/*
 class ShipMoving : State
 {
     public override void Enter()
@@ -142,6 +149,7 @@ class ShipMoving : State
     }
 }
 
+// pirate ship
 class AttackShip : State
 {
     public override void Enter()
@@ -161,7 +169,7 @@ class AttackShip : State
     {
         owner.GetComponent<MoveToAttack>().enabled = false;
     }
-}
+}*/
 
 
 

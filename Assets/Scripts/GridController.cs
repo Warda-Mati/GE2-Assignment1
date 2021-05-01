@@ -25,7 +25,7 @@ public class GridController : MonoBehaviour
                 {
                     Vector3 pos = new Vector3(i * radius*(radius*2), 0, j * (radius*radius*2));
                     Vector3 size = Vector3.one * radius *2;
-                    Gizmos.DrawWireCube(pos,size);
+                    Gizmos.DrawWireCube(transform.TransformPoint(pos),size);
                 }
             }
         }

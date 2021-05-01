@@ -8,11 +8,20 @@ public class PirateShipController : MonoBehaviour
 {
 
     public bool piratesNearby = false;
+    public int rotationToAttack = 0;
+    public float moveSpeed = 0.2f;
+    public float rotSpeed;
+
+    public float time;
+
+
+
 
   
     
     private void Awake()
     {
+        time = 0;
         GetComponent<StateMachine>().ChangeState(new ShipMoving());
     }
     
@@ -31,5 +40,49 @@ public class PirateShipController : MonoBehaviour
     void Update()
     {
         
+    }
+}
+
+
+// pirate ship
+class ShipMoving : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<NoiseWander>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<PirateShipController>().piratesNearby)
+        {
+            owner.ChangeState(new AttackShip());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<NoiseWander>().enabled = false;
+    }
+}
+
+// pirate ship
+class AttackShip : State
+{
+    private PirateShipController pirate;
+    public override void Enter()
+    {
+        //owner.GetComponent<MoveToAttack>().enabled = true;
+        pirate = owner.GetComponent<PirateShipController>();
+    }
+
+    public override void Think()
+    {
+        owner.GetComponent<MoveToAttack>().enabled = true;
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<MoveToAttack>().enabled = false;
     }
 }

@@ -72,3 +72,47 @@ public class DolphinController : MonoBehaviour
         }
     }
 }
+
+class MovetoDive : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<MoveToLand>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<DolphinController>().diving)
+        {
+            owner.ChangeState(new DiveState());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<MoveToLand>().enabled = false;
+    }
+}
+
+
+
+class DiveState : State
+{
+    public override void Enter()
+    {
+        owner.GetComponent<DolphinFlip>().enabled = true;
+    }
+
+    public override void Think()
+    {
+        if (owner.GetComponent<DolphinController>().splashesCounter == 3)
+        {
+            owner.ChangeState(new FollowPathState());
+        }
+    }
+
+    public override void Exit()
+    {
+        owner.GetComponent<DolphinFlip>().enabled = false;
+    }
+}

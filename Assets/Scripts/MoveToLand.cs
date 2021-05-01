@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class MoveToLand : MonoBehaviour
 {
     public int radius;
-
     public GameObject water;
     // Start is called before the first frame update
     void Start()

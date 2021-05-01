@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class MoveToAttack : MonoBehaviour
 {
-    public int rotationToAttack = 0;
-    public float moveSpeed = 0.2f;
+    
     public float rotSpeed;
 
     public float time;
@@ -24,9 +23,7 @@ public class MoveToAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = rotationToAttack;
         time += Time.deltaTime;
-        Vector3 target = new Vector3(0,0,0);
         transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.identity, rotSpeed * time);
         if (transform.rotation == Quaternion.identity)
         {
