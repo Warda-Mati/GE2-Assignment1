@@ -8,20 +8,10 @@ public class PirateShipController : MonoBehaviour
 {
 
     public bool piratesNearby = false;
-    public int rotationToAttack = 0;
-    public float moveSpeed = 0.2f;
-    public float rotSpeed;
-
-    public float time;
-
-
-
-
-  
+    public int health;
     
     private void Awake()
     {
-        time = 0;
         GetComponent<StateMachine>().ChangeState(new ShipMoving());
     }
     
@@ -34,6 +24,7 @@ public class PirateShipController : MonoBehaviour
         {
             piratesNearby = true;
         }
+        
     }
 
     // Update is called once per frame

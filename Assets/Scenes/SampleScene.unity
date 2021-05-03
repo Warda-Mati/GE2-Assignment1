@@ -1549,7 +1549,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422796529}
-  m_Material: {fileID: 13400000, guid: ba92fb44336020f40bdf294bb66bc9da, type: 2}
+  m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 17b4116d1e1dc234397e02f08771caab, type: 2}
   m_EnableTreeColliders: 1
@@ -2801,8 +2801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554f0f49984b56f48808b87934ee84d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationToAttack: 0
-  moveSpeed: 0.3
   rotSpeed: 0.2
   time: 0
 --- !u!114 &842047075
@@ -2818,6 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piratesNearby: 0
+  health: 0
 --- !u!114 &842047076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8330,8 +8329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554f0f49984b56f48808b87934ee84d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationToAttack: 0
-  moveSpeed: 0.3
   rotSpeed: 0.1
   time: 0
 --- !u!114 &1058587483
@@ -8347,6 +8344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piratesNearby: 0
+  health: 0
 --- !u!114 &1058587484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13770,6 +13768,7 @@ MonoBehaviour:
   distance: 20
   radius: 10
   jitter: 100
+  height: 0
   target: {x: 0, y: 0, z: 0}
   worldTarget: {x: 0, y: 0, z: 0}
 --- !u!1001 &1288259501
@@ -13980,6 +13979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piratesNearby: 0
+  health: 0
 --- !u!4 &1340601828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4483642169425113191, guid: 88816354e42c5894a91df35de756230c,
@@ -14687,6 +14687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piratesNearby: 0
+  health: 0
 --- !u!65 &1659115698
 BoxCollider:
   m_ObjectHideFlags: 0

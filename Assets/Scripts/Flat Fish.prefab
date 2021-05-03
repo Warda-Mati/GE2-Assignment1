@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9139253479393963604}
   - component: {fileID: -242230682408595313}
   - component: {fileID: 1799590990277682307}
+  - component: {fileID: 4854455311042959995}
   m_Layer: 0
   m_Name: Flat Fish
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   mass: 1
   damping: 0.01
   banking: 0.1
-  maxSpeed: 5
+  maxSpeed: 2
   maxForce: 10
 --- !u!114 &1799590990277682307
 MonoBehaviour:
@@ -71,8 +72,34 @@ MonoBehaviour:
   distance: 20
   radius: 10
   jitter: 100
+  height: -5
   target: {x: 0, y: 0, z: 0}
   worldTarget: {x: 0, y: 0, z: 0}
+--- !u!114 &4854455311042959995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890080661197760319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cbead407da35447b2e0c6d762c67ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  scale: 4
+  forwardFeelerDepth: 30
+  sideFeelerDepth: 15
+  frontFeelerUpdatesPerSecond: 10
+  sideFeelerUpdatesPerSecond: 5
+  feelerRadius: 2
+  forceType: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!96 &131536014842567090
 TrailRenderer:
   serializedVersion: 2

@@ -12,11 +12,12 @@ TagManager:
   - water
   - ship
   - pirates
+  - terrain
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Terrain
   - Water
   - UI
   - 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8389743158519078415}
   - component: {fileID: 2768563961545416844}
   - component: {fileID: 758556956626575807}
+  - component: {fileID: 766675085464834710}
   m_Layer: 0
   m_Name: Zebra Fish
   m_TagString: Untagged
@@ -72,6 +73,7 @@ MonoBehaviour:
   distance: 20
   radius: 10
   jitter: 100
+  height: 0
   target: {x: 0, y: 0, z: 0}
   worldTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &758556956626575807
@@ -95,6 +97,31 @@ MonoBehaviour:
   amplitude: 80
   distance: 5
   axis: 0
+--- !u!114 &766675085464834710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969408137263883607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cbead407da35447b2e0c6d762c67ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  scale: 4
+  forwardFeelerDepth: 30
+  sideFeelerDepth: 15
+  frontFeelerUpdatesPerSecond: 10
+  sideFeelerUpdatesPerSecond: 5
+  feelerRadius: 2
+  forceType: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &8397461218686482712
 PrefabInstance:
   m_ObjectHideFlags: 0

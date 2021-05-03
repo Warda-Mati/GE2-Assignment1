@@ -7,7 +7,8 @@ public class CannonBall : MonoBehaviour
 {
     public int speed;
     public GameObject explosion;
-    
+
+    public int damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,8 @@ public class CannonBall : MonoBehaviour
     {
         if (other.tag == "ship")
         {
-            Debug.Log("cannonball hit");
+            PirateShipController p = other.gameObject.GetComponent<PirateShipController>();
+            p.health = p.health - damage;
             Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }

@@ -7,6 +7,7 @@ public class jitterWander : SteeringBehavior
     public float distance = 20;
     public float radius = 10;
     public float jitter = 100;
+    public int height;
 
     public Vector3 target;
     public Vector3 worldTarget;
@@ -35,7 +36,7 @@ public class jitterWander : SteeringBehavior
         Vector3 localTarget = (Vector3.forward * distance) + target;
 
         worldTarget = transform.TransformPoint(localTarget);
-        worldTarget.y = 0;
+        worldTarget.y = height;
 
         return worldTarget - transform.position;
     }
