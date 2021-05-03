@@ -32,7 +32,7 @@ public class SpineAnimator : MonoBehaviour {
     }
 	
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         for (int i = 0; i < bones.Length; i++)
         {
             GameObject prevBone = (i == 0)
@@ -45,9 +45,9 @@ public class SpineAnimator : MonoBehaviour {
 
             Vector3 wantedPosition = (prevBone.transform.rotation * offsets[i]) + prevBone.transform.position;
 
-            //bone.transform.position = Vector3.Lerp(bone.transform.position
-             //   , wantedPosition
-             //   , Time.deltaTime * bondDamping);
+            bone.transform.position = Vector3.Lerp(bone.transform.position
+                , wantedPosition
+                , Time.deltaTime * bondDamping);
 
             Quaternion wantedRotation = Quaternion.LookRotation(prevBone.transform.position
                                                                 - bone.transform.position);
