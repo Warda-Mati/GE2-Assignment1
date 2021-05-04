@@ -18,13 +18,19 @@ public class FlowFieldGrid : MonoBehaviour
 
     void drawField()
     {
+        float offsetx = 0;
         for (int i = 0; i < column; i++)
         {
+            float offsety = 0;
             for (int j = 0; j < rows ; j++)
             {
                 field[i, j] = transform.TransformPoint(new Vector3(i,j));
-                direction[i,j] = Vector3.forward;
+                float theta = map(Mathf.PerlinNoise(offsetx, offsety), 0, 1, 0, Mathf.PI * 2);
+                direction[i, j] = new Vector3(Mathf.Cos(theta),transform.position.y,Mathf.Sin(theta));
+                offsety += 0.1f;
             }
+
+            offsetx += 0.1f;
         }
     }
 
@@ -42,10 +48,15 @@ public class FlowFieldGrid : MonoBehaviour
             }
         }
     }
+    
+    
+    public float map (float value, float from1, float to1, float from2, float to2) {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(direction[15,6]);
+      
     }
 }

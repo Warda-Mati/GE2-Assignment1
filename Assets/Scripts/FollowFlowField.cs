@@ -23,9 +23,6 @@ public class FollowFlowField : SteeringBehavior
         Vector3 pos = transform.localPosition;
         int x = (int)pos.x;
         int z = Mathf.RoundToInt(pos.z);
-        Debug.Log("pos is " + pos.x);
-        Debug.Log(x);
-        Debug.Log(z);
         return flowFieldGrid.direction[x,z] ;
     }
 }
