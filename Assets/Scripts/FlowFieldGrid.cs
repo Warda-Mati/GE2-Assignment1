@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class FlowFieldGrid : MonoBehaviour
 {
-    private Vector3[,] field;
+    public Vector2[,] field;
+    public Vector3[,] direction;
     public int column, rows;
     // Start is called before the first frame update
     void Start()
     {
-        field = new Vector3[column, rows];
+        field = new Vector2[column, rows];
+        direction = new Vector3[column, rows];
         drawField();
     }
 
@@ -20,7 +22,8 @@ public class FlowFieldGrid : MonoBehaviour
         {
             for (int j = 0; j < rows ; j++)
             {
-                field[i, j] = transform.TransformPoint(new Vector3(i, transform.position.y, j));
+                field[i, j] = transform.TransformPoint(new Vector3(i,j));
+                direction[i,j] = Vector3.forward;
             }
         }
     }
@@ -43,6 +46,6 @@ public class FlowFieldGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(direction[15,6]);
     }
 }
