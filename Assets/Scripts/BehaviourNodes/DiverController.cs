@@ -17,7 +17,7 @@ public class DiverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        root.Evaluate();
     }
 
     void ConstructBehaviourTree()

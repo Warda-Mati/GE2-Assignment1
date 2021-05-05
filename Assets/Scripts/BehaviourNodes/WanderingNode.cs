@@ -15,7 +15,6 @@ public class WanderingNode : Node
         if (diver.isNearFish)
         {
             GameObject.Destroy(diver.GetComponent<NoiseWander>());
-            Debug.Log("successs");
             return NodeState.SUCCESS;
         }
         else
