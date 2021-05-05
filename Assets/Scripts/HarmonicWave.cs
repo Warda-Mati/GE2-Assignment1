@@ -10,7 +10,7 @@ public class HarmonicWave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class HarmonicWave : MonoBehaviour
     {
         float angle = Mathf.Sin(theta) * amplitude;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.right);
-        transform.rotation = q;
+        transform.localRotation = q;
         theta += Mathf.PI * 2.0f * Time.deltaTime * frequency;
     }
 }
