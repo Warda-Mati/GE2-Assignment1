@@ -10,8 +10,7 @@ public class HarmonicWave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        theta = 0;
-        
+       
     }
 
     // Update is called once per frame
