@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pursue : SteeringBehavior
 {
     public FishBoid target;
-
+    
     Vector3 targetPos;
 
-   
+    private void Start()
+    {
+        
+    }
 
     public void OnDrawGizmos()
     {

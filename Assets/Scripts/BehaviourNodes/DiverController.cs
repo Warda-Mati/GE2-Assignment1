@@ -6,14 +6,16 @@ using UnityEngine;
 public class DiverController : MonoBehaviour
 {
     public bool isNearFish;
-
+    public FishBoid targetFish;
     private Node root;
+
+    private PursueNode pursueNode;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         ConstructBehaviourTree();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -23,8 +25,11 @@ public class DiverController : MonoBehaviour
     void ConstructBehaviourTree()
     {
         WanderingNode wanderingNode = new WanderingNode(this);
+        pursueNode = new PursueNode(this, targetFish);
 
-        root = new Selector(new List<Node> {wanderingNode});
+        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode});
+
+        root = new Selector(new List<Node> {mainSequence});
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +37,9 @@ public class DiverController : MonoBehaviour
         if (other.tag == "fish" && isNearFish == false)
         {
             isNearFish = true;
+            //targetFish = other.gameObject.GetComponent<FishBoid>();
+            pursueNode.targetFish =  other.gameObject.GetComponent<FishBoid>();
+            targetFish = other.gameObject.GetComponent<FishBoid>();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -39,6 +47,7 @@ public class DiverController : MonoBehaviour
         if (other.tag == "fish" && isNearFish)
         {
             isNearFish = false;
+            //pursueNode.targetFish = null;
         }
     }
 }

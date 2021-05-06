@@ -5,16 +5,22 @@ using UnityEngine;
 public class WanderingNode : Node
 {
     private DiverController diver;
-
+    private bool addWander = false;
     public WanderingNode(DiverController diver)
     { 
         this.diver = diver;
     }
     public override NodeState Evaluate()
     {
+        if (!addWander)
+        {
+            diver.GetComponent<NoiseWander>().enabled = true;
+            addWander = true;
+        }
         if (diver.isNearFish)
         {
-            GameObject.Destroy(diver.GetComponent<NoiseWander>());
+            diver.GetComponent<NoiseWander>().enabled = false;
+            addWander = false;
             return NodeState.SUCCESS;
         }
         else

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,12 @@ public class NoiseWander : SteeringBehavior
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(transform.position, worldTarget);
         }
+    }
+
+
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame
