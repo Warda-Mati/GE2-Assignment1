@@ -17,8 +17,10 @@ public class FishController : MonoBehaviour
 
         if (c.tag == "harpoon")
         {
+            Destroy(c.gameObject);
             GetComponent<StateMachine>().ChangeState(new Dead());
             GetComponent<StateMachine>().SetGlobalState(new Dead());
+            transform.rotation = new Quaternion(0,0,90,0);
         }
     }
     // Start is called before the first frame update
@@ -33,7 +35,11 @@ public class FishController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (tag == "dead")
+        {
+            float y = Mathf.PingPong(Time.time * 0.5f, 1) * 0.05f - (0.05f/2);
+            transform.position = transform.TransformPoint(new Vector3(0, y, 0));
+        }
     }
 }
 

@@ -6,7 +6,7 @@ public class ShootNode : Node
 {
     public DiverController diver;
     
-    public float rotSpeed;
+    public float rotSpeed = 0.5f;
     public FishBoid targetFish;
 
     private bool beginShooting;
@@ -18,7 +18,7 @@ public class ShootNode : Node
     public override NodeState Evaluate()
     {
         Vector3 toFish = targetFish.transform.position - diver.transform.position;
-        diver.transform.localRotation = Quaternion.RotateTowards(diver.transform.rotation,
+        diver.transform.rotation = Quaternion.RotateTowards(diver.transform.rotation,
             Quaternion.LookRotation(toFish)
             , rotSpeed * Time.deltaTime
         );
@@ -27,13 +27,15 @@ public class ShootNode : Node
             diver.InvokeRepeating("ShootHarpoons",5,2);
             beginShooting = true;
         }
-        
+
         if (targetFish.gameObject.tag == "dead")
-            return NodeState.SUCCESS;
-         
+        {
+            beginShooting = false;
+            return NodeState.SUCCESS;   
+        }
+
         return NodeState.RUNNING;
     }
-
-
+    
   
 }
