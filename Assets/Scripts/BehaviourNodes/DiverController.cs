@@ -16,6 +16,10 @@ public class DiverController : MonoBehaviour
     public GameObject harpoon;
 
     public GameObject arm;
+
+    public GameObject tank;
+    public int fishCollected = 0;
+    public int maxFish;
     // Start is called before the first frame update
     private void Awake()
     {
