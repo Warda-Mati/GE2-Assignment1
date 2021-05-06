@@ -28,8 +28,9 @@ public class ShootNode : Node
             beginShooting = true;
         }
 
-        if (targetFish.gameObject.tag == "dead")
+        if (GameObject.FindGameObjectsWithTag("dead").Length > 0)
         {
+            Debug.Log("succeeded shoot");
             //beginShooting = false;
             return NodeState.SUCCESS;   
         }

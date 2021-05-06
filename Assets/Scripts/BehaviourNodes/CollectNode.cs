@@ -14,9 +14,11 @@ public class CollectNode : Node
     
     public override NodeState Evaluate()
     {
+       
         deadFish = GameObject.FindGameObjectsWithTag("dead");
-        if (deadFish.Length > 0 && (diverController.fishCollected < diverController.maxFish))
+        if (deadFish.Length > 0 && !diverController.fishCollected)
         {
+            
             Seek diverSeek = diverController.GetComponent<Seek>();
             diverSeek.enabled = true;
             diverSeek.targetGameObject = deadFish[0];
@@ -26,8 +28,9 @@ public class CollectNode : Node
                 targetFish.transform.parent = diverController.tank.transform;
                 targetFish.transform.localPosition = Vector3.zero;
                 targetFish.tag = "collected";
-                diverController.fishCollected += 1;
-
+                diverController.fishCollected = true;
+                diverSeek.targetGameObject = null;
+                diverSeek.enabled = false;
                 return NodeState.SUCCESS;
             }
             else

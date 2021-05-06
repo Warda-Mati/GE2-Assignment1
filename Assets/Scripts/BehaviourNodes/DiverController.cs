@@ -18,8 +18,7 @@ public class DiverController : MonoBehaviour
     public GameObject arm;
 
     public GameObject tank;
-    public int fishCollected = 0;
-    public int maxFish;
+    public bool fishCollected = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -39,7 +38,9 @@ public class DiverController : MonoBehaviour
 
         shootNode = new ShootNode(this);
 
-        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode});
+        CollectNode collectNode = new CollectNode(this);
+
+        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode,collectNode});
 
         root = new Selector(new List<Node> {mainSequence});
     }
