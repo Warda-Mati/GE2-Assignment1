@@ -30,7 +30,6 @@ public class CollectNode : Node
                 targetFish.tag = "collected";
                 diverController.fishCollected = true;
                 diverSeek.targetGameObject = null;
-                diverSeek.enabled = false;
                 return NodeState.SUCCESS;
             }
             else

@@ -19,10 +19,15 @@ public class DiverController : MonoBehaviour
 
     public GameObject tank;
     public bool fishCollected = false;
+
+    public GameObject boat;
+
+    public Vector3 startPos;
     // Start is called before the first frame update
     private void Awake()
     {
         ConstructBehaviourTree();
+        startPos = this.transform.position;
     }
     
     // Update is called once per frame
@@ -40,7 +45,11 @@ public class DiverController : MonoBehaviour
 
         CollectNode collectNode = new CollectNode(this);
 
-        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode,collectNode});
+        GoToBoatNode goToBoatNode = new GoToBoatNode(this, boat);
+        GoToStart goToStart = new GoToStart(this);
+
+        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode,collectNode,goToBoatNode,goToStart});
+        
 
         root = new Selector(new List<Node> {mainSequence});
     }
