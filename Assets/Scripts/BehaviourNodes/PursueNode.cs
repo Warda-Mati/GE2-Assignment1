@@ -13,9 +13,6 @@ public class PursueNode : Node
     {
         this.diver = diver;
         this.targetFish = targetFish;
-        
-
-
     }
 
     public override NodeState Evaluate()

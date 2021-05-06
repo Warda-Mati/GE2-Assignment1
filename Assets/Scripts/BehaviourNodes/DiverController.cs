@@ -10,6 +10,8 @@ public class DiverController : MonoBehaviour
     private Node root;
 
     private PursueNode pursueNode;
+    public GameObject harpoonGun;
+    public GameObject harpoon;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -49,5 +51,11 @@ public class DiverController : MonoBehaviour
             isNearFish = false;
             //pursueNode.targetFish = null;
         }
+    }
+    
+    public void ShootHarpoons()
+    {
+        GameObject shotHarpoon =
+            GameObject.Instantiate(harpoon, harpoonGun.transform.position, harpoon.transform.rotation);
     }
 }
