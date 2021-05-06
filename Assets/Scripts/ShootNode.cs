@@ -30,7 +30,7 @@ public class ShootNode : Node
 
         if (targetFish.gameObject.tag == "dead")
         {
-            beginShooting = false;
+            //beginShooting = false;
             return NodeState.SUCCESS;   
         }
 

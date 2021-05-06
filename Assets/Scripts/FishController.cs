@@ -53,6 +53,9 @@ class Dead : State
         {
             sb.enabled = false;
         }
+        owner.GetComponent<FishBoid>().velocity = Vector3.zero;
+        owner.GetComponent<FishBoid>().force = Vector3.zero;
+        owner.GetComponent<FishBoid>().acceleration = Vector3.zero;
         owner.GetComponent<StateMachine>().enabled = false;
         owner.tag = "dead";
     }     
