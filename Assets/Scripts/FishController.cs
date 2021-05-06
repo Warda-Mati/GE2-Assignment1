@@ -14,6 +14,12 @@ public class FishController : MonoBehaviour
         {
             withinShark = true;
         }
+
+        if (c.tag == "harpoon")
+        {
+            GetComponent<StateMachine>().ChangeState(new Dead());
+            GetComponent<StateMachine>().SetGlobalState(new Dead());
+        }
     }
     // Start is called before the first frame update
     private void Awake()
@@ -30,3 +36,19 @@ public class FishController : MonoBehaviour
         
     }
 }
+
+
+class Dead : State
+{
+    public override void Enter()
+    {
+        SteeringBehavior[] sbs = owner.GetComponent<FishBoid>().GetComponents<SteeringBehavior>();
+        foreach(SteeringBehavior sb in sbs)
+        {
+            sb.enabled = false;
+        }
+        owner.GetComponent<StateMachine>().enabled = false;
+        owner.tag = "dead";
+    }     
+}
+

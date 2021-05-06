@@ -62,6 +62,6 @@ public class DiverController : MonoBehaviour
     {
         arm.GetComponent<HarmonicWave>().enabled = false;
         arm.transform.localRotation = Quaternion.identity;
-        Instantiate(harpoon, harpoonGun.transform.position, harpoonGun.transform.localRotation);
+        Instantiate(harpoon, harpoonGun.transform.position, harpoonGun.transform.rotation);
     }
 }
