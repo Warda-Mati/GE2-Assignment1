@@ -10,8 +10,12 @@ public class DiverController : MonoBehaviour
     private Node root;
 
     private PursueNode pursueNode;
+    private ShootNode shootNode;
+    
     public GameObject harpoonGun;
     public GameObject harpoon;
+
+    public GameObject arm;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -29,7 +33,9 @@ public class DiverController : MonoBehaviour
         WanderingNode wanderingNode = new WanderingNode(this);
         pursueNode = new PursueNode(this, targetFish);
 
-        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode});
+        shootNode = new ShootNode(this);
+
+        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode});
 
         root = new Selector(new List<Node> {mainSequence});
     }
@@ -39,8 +45,8 @@ public class DiverController : MonoBehaviour
         if (other.tag == "fish" && isNearFish == false)
         {
             isNearFish = true;
-            //targetFish = other.gameObject.GetComponent<FishBoid>();
             pursueNode.targetFish =  other.gameObject.GetComponent<FishBoid>();
+            shootNode.targetFish = pursueNode.targetFish;
             targetFish = other.gameObject.GetComponent<FishBoid>();
         }
     }
@@ -49,13 +55,13 @@ public class DiverController : MonoBehaviour
         if (other.tag == "fish" && isNearFish)
         {
             isNearFish = false;
-            //pursueNode.targetFish = null;
         }
     }
     
     public void ShootHarpoons()
     {
-        GameObject shotHarpoon =
-            GameObject.Instantiate(harpoon, harpoonGun.transform.position, harpoon.transform.rotation);
+        arm.GetComponent<HarmonicWave>().enabled = false;
+        arm.transform.localRotation = Quaternion.identity;
+        Instantiate(harpoon, harpoonGun.transform.position, harpoonGun.transform.localRotation);
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 public class ShootNode : Node
 {
     public DiverController diver;
-  
-
+    
     public float rotSpeed;
     public FishBoid targetFish;
 
+    private bool beginShooting;
     public ShootNode(DiverController diver)
     {
         this.diver = diver;
@@ -22,11 +22,16 @@ public class ShootNode : Node
             Quaternion.LookRotation(toFish)
             , rotSpeed * Time.deltaTime
         );
-        diver.InvokeRepeating("ShootHarpoons",5,5);
+        if (!beginShooting)
+        {
+            diver.InvokeRepeating("ShootHarpoons",5,2);
+            beginShooting = true;
+        }
+        
         if (targetFish.gameObject.tag == "dead")
             return NodeState.SUCCESS;
-        else 
-            return NodeState.RUNNING;
+         
+        return NodeState.RUNNING;
     }
 
 
