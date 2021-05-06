@@ -13,6 +13,8 @@ TagManager:
   - ship
   - pirates
   - terrain
+  - harpoon
+  - dead
   layers:
   - Default
   - TransparentFX
