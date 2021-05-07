@@ -26,7 +26,7 @@ public class FlowFieldGrid : MonoBehaviour
             {
                 field[i, j] = transform.TransformPoint(new Vector3(i,j));
                 float theta = map(Mathf.PerlinNoise(offsetx, offsety), 0, 1, 0, Mathf.PI * 2);
-                direction[i, j] = new Vector3(Mathf.Cos(theta),transform.position.y,Mathf.Sin(theta));
+                direction[i, j] = new Vector3(Mathf.Cos(theta),0,Mathf.Sin(theta));
                 offsety += 0.1f;
             }
 
@@ -36,17 +36,35 @@ public class FlowFieldGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!Application.isPlaying)
+        //if (!Application.isPlaying)
+        //{
+        //    field = new Vector2[column, rows];
+        //    direction = new Vector3[column, rows];
+        if (Application.isPlaying)
         {
+            float offsetx = 0;
             for (int i = 0; i < column; i++)
             {
+                float offsety = 0;
                 for (int j = 0; j < rows ; j++)
                 {
+                    field[i, j] = transform.TransformPoint(new Vector3(i,j));
+                    float theta = map(Mathf.PerlinNoise(offsetx, offsety), 0, 1, 0, Mathf.PI * 2);
+                    direction[i, j] = new Vector3(Mathf.Cos(theta),0,Mathf.Sin(theta));
+                    offsety += 0.1f;
                     Gizmos.color = Color.green;
                     Gizmos.DrawWireCube(transform.TransformPoint(new Vector3(i, transform.position.y, j)), Vector3.one);
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawRay(transform.TransformPoint(new Vector3(i, transform.position.y, j)),direction[i,j]);
+                    
                 }
+
+                offsetx += 0.1f;
             }
+            
         }
+          
+        //}
     }
     
     

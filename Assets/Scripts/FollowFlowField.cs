@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class FollowFlowField : SteeringBehavior
 {
-    public FlowFieldGrid flowFieldGrid;
+    public FlowFieldGrid flowFieldGrid; 
+    public Transform target;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,12 @@ public class FollowFlowField : SteeringBehavior
         Vector3 pos = transform.localPosition;
         int x = (int)pos.x;
         int z = Mathf.RoundToInt(pos.z);
-        return flowFieldGrid.direction[x,z] ;
+        Vector3 desired = target.position - transform.position;
+        desired.Normalize();
+        desired *= boid.maxSpeed;
+        Debug.Log("flowfield is " + flowFieldGrid.direction[x,z]);
+        Debug.Log("desired is " + desired);
+        Debug.Log("together is " + (desired - flowFieldGrid.direction[x,z]));
+        return desired - (flowFieldGrid.direction[x,z] * weight) ;
     }
 }
