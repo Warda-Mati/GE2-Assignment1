@@ -10,7 +10,7 @@ public class DolphinFlip : MonoBehaviour
     public float rotSpeed;
     private Quaternion rot;
 
-    public GameObject splashPrefab;
+    public float y = -270;
 
     public float time;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class DolphinFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = -270;
+        
         time += Time.deltaTime;
         Vector3 target = new Vector3(y,transform.position.y,transform.position.z);
         transform.localEulerAngles = Vector3.Lerp(transform.position,target, rotSpeed * time);

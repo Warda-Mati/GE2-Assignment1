@@ -6,6 +6,11 @@ public class FollowPath : SteeringBehavior
 {
     public FishPath path;
     private int counter = 0;
+
+    public void Start()
+    {
+        
+    }
     public override Vector3 Calculate()
     {
         Vector3 f = Vector3.zero;

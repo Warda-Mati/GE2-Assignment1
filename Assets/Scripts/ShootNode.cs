@@ -30,8 +30,7 @@ public class ShootNode : Node
 
         if (GameObject.FindGameObjectsWithTag("dead").Length > 0)
         {
-            Debug.Log("succeeded shoot");
-            //beginShooting = false;
+            
             return NodeState.SUCCESS;   
         }
 

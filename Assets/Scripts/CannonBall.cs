@@ -26,8 +26,8 @@ public class CannonBall : MonoBehaviour
     {
         if (other.tag == "ship")
         {
-            PirateShipController p = other.gameObject.GetComponent<PirateShipController>();
-//            p.health = p.health - damage;
+            PirateShipController p = other.gameObject.transform.parent.GetComponent<PirateShipController>();
+            p.health = p.health - damage;
             Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }

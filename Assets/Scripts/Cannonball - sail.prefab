@@ -112,6 +112,7 @@ MonoBehaviour:
   speed: 10
   explosion: {fileID: 1673623483204854190, guid: d037eced46bc2c04c9f836ce8bff0d36,
     type: 3}
+  damage: 5
 --- !u!54 &8225970691470032503
 Rigidbody:
   m_ObjectHideFlags: 0

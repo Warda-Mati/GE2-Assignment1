@@ -30,7 +30,10 @@ public class PirateShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            GetComponent<StateMachine>().ChangeState(new ShipSink());
+        }
     }
 }
 
@@ -77,3 +80,24 @@ class AttackShip : State
         owner.GetComponent<MoveToAttack>().enabled = false;
     }
 }
+
+class ShipSink : State
+{
+    private float time = 0;
+    public override void Enter()
+    {
+        owner.GetComponent<MoveToAttack>().enabled = false;
+        owner.GetComponent<FireCannon>().enabled = false;
+    }
+
+    public override void Think()
+    {
+        owner.GetComponent<DolphinFlip>().enabled = true;
+    }
+
+    public override void Exit()
+    {
+        
+    }
+}
+
