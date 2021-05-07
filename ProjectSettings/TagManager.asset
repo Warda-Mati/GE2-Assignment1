@@ -15,6 +15,7 @@ TagManager:
   - terrain
   - harpoon
   - dead
+  - collected
   layers:
   - Default
   - TransparentFX

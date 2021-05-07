@@ -17,6 +17,7 @@ public class PursueNode : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Purseing");
         if (targetFish == null)
             return NodeState.FAILURE;
         

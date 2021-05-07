@@ -14,6 +14,7 @@ public class GoToBoatNode : Node
     }
     public override NodeState Evaluate()
     {
+        Debug.Log("Go to boat");
         if (diver.fishCollected)
         {
             diver.GetComponent<Seek>().targetGameObject = boat;

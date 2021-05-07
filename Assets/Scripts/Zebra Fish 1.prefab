@@ -76,8 +76,8 @@ MonoBehaviour:
   boid: {fileID: 0}
   distance: 20
   radius: 10
-  jitter: 100
-  height: 0
+  jitter: 50
+  height: -5
   target: {x: 0, y: 0, z: 0}
   worldTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &2662122758860911919
@@ -125,7 +125,7 @@ MonoBehaviour:
   forceType: 0
   mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
 --- !u!135 &8875201801471955357
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523079414540890567}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47fa6f3ed1df2e94ebb182de4702aeb1, type: 3}
   m_Name: 

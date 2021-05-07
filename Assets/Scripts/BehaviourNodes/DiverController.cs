@@ -48,10 +48,13 @@ public class DiverController : MonoBehaviour
         GoToBoatNode goToBoatNode = new GoToBoatNode(this, boat);
         GoToStart goToStart = new GoToStart(this);
 
-        Sequence mainSequence = new Sequence(new List<Node> {wanderingNode, pursueNode,shootNode,collectNode,goToBoatNode,goToStart});
+        
+        Sequence wanderSequence = new Sequence(new List<Node> {wanderingNode});
+        Sequence collectSequence = new Sequence(new List<Node> {pursueNode, shootNode, collectNode});
+        Sequence dropFishSequence = new Sequence(new List<Node> {goToBoatNode, goToStart});
         
 
-        root = new Selector(new List<Node> {mainSequence});
+        root = new Sequence(new List<Node> {wanderSequence,collectSequence,dropFishSequence});
     }
 
     private void OnTriggerEnter(Collider other)
