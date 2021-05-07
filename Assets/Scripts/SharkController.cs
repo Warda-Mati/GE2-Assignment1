@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SharkController : MonoBehaviour
 {
+    public bool pursueingFish = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,25 +20,15 @@ public class SharkController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "fish" && GetComponent<Pursue>().target != null)
+        if (other.tag == "fish" && pursueingFish == false)
         {
-
-            GetComponent<FollowPath>().enabled = true;
             GetComponent<Pursue>().target = other.GetComponent<FishBoid>();
-            GetComponent<StateMachine>().ChangeState(new PursueFish());
+            pursueingFish = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "fish")
-        {
-            GetComponent<Pursue>().target = null;
-            if(GetComponent<Pursue>().target) 
-                GetComponent<StateMachine>().RevertToPreviousState();
-            
-        }
-    }
+   
+    
 }
 
 class SharkPath : State
@@ -45,12 +36,15 @@ class SharkPath : State
     
     public override void Enter()
     {
-        
+        owner.GetComponent<FollowPath>().enabled = true;
     }
 
     public override void Think()
     {
-        
+        if (owner.GetComponent<SharkController>().pursueingFish)
+        {
+            owner.ChangeState(new PursueFish());
+        }
     }
 
     public override void Exit()
@@ -70,11 +64,16 @@ class PursueFish : State
 
     public override void Think()
     {
-        
+        if (Vector3.Distance(owner.transform.position, owner.GetComponent<Pursue>().target.transform.position) > 10f)
+        {
+            owner.ChangeState(new SharkPath());
+        }
     }
 
     public override void Exit()
     {
+        owner.GetComponent<SharkController>().pursueingFish = false;
+        owner.GetComponent<Pursue>().target = null;
         owner.GetComponent<Pursue>().enabled = false;
         owner.GetComponent<ObstacleAvoidance>().enabled = false;
     }
