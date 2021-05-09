@@ -20,25 +20,27 @@ public class PursueNode : Node
         if(_state == NodeState.SUCCESS)
             return NodeState.SUCCESS;
         
-        if (!addPursue)
-        {
-            diver.gameObject.GetComponent<Pursue>().enabled = true;
-            diver.GetComponent<Pursue>().target = targetFish;
-            diver.GetComponent<FishBoid>().maxSpeed = 5;
-            diver.InvokeRepeating("ShootHarpoons",5,2);
-            addPursue = true;
-        }
-
-       // if (Vector3.Distance(diver.transform.position, targetFish.transform.position) < range)
-        //{
+        
         if (GameObject.FindGameObjectsWithTag("dead").Length > 0)
         {
             addPursue = false;
             diver.GetComponent<Pursue>().enabled = false;
             diver.CancelInvoke();
+            diver.GetComponent<FishBoid>().enabled = false;
             _state = NodeState.SUCCESS;
             return NodeState.SUCCESS;   
         }
+        
+        if (!addPursue)
+        {
+            diver.gameObject.GetComponent<Pursue>().enabled = true;
+            FishBoid[] fishes = GameObject.FindObjectsOfType<FishBoid>();
+            diver.GetComponent<Pursue>().target = fishes[0];
+            diver.GetComponent<FishBoid>().maxSpeed = 5;
+            diver.InvokeRepeating("ShootHarpoons",5,2);
+            addPursue = true;
+        }
+
          
         return NodeState.RUNNING;
         

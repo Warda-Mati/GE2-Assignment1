@@ -14,9 +14,13 @@ public class GoToStart : Node
     {
         
         diver.GetComponent<Seek>().target = diver.startPos;
-        if (Vector3.Distance(diver.transform.position, diver.startPos) < 1)
+        if (Vector3.Distance(diver.transform.position, diver.startPos) < 4)
         {
-           
+            diver.GetComponent<Seek>().enabled = false;
+            //diver.GetComponent<FishBoid>().acceleration = Vector3.zero;
+            //diver.GetComponent<FishBoid>().force = Vector3.zero;
+            //diver.GetComponent<FishBoid>().velocity = Vector3.zero;
+            diver.Invoke("RevertStates",1);
             return NodeState.SUCCESS;
         }
 

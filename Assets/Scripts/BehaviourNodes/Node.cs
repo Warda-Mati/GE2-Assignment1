@@ -15,7 +15,11 @@ public abstract class Node
     public NodeState nodeState
     {
         get { return _state; }
+
+        set { _state = value; }
     }
+    
+    
 
     public abstract NodeState Evaluate();
 }

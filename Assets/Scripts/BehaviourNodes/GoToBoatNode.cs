@@ -21,14 +21,26 @@ public class GoToBoatNode : Node
   
         if (diver.fishCollected)
         {
+            GameObject caughtFish = diver.tank.transform.GetChild(0).gameObject;
+            caughtFish.transform.localPosition = Vector3.zero;
             diver.GetComponent<Seek>().targetGameObject = boat;
-            if (Vector3.Distance(diver.transform.position, boat.transform.position) < 1)
+            if (Vector3.Distance(diver.transform.position, boat.transform.position) < 5)
             {
-                GameObject caughtFish = diver.tank.transform.GetChild(0).gameObject;
+                
                 caughtFish.transform.parent = null;
+                List<GameObject> fishes = caughtFish.GetComponent<FlockingBehaviour>().agents;
+                for (int i = 0; i < fishes.Count; i++)
+                {
+                    GameObject entity = fishes[i];
+                    if (entity == caughtFish)
+                    {
+                        fishes.Remove(caughtFish);
+                    }
+                }
                 GameObject.Destroy(caughtFish);
                 diver.fishCollected = false;
                 diver.GetComponent<Seek>().targetGameObject = null;
+                _state = NodeState.SUCCESS;
                 return NodeState.SUCCESS;
             }
 

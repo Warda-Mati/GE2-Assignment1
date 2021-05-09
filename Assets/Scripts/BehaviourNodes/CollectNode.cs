@@ -23,9 +23,10 @@ public class CollectNode : Node
 
             Seek diverSeek = diverController.GetComponent<Seek>();
             diverSeek.enabled = true;
+            diverController.GetComponent<FishBoid>().enabled = true;
             diverSeek.targetGameObject = deadFish[0];
             GameObject targetFish = diverSeek.targetGameObject;
-            if (Vector3.Distance(targetFish.transform.position, diverController.transform.position) < 1)
+            if (Vector3.Distance(targetFish.transform.position, diverController.transform.position) < 2)
             {
                 targetFish.transform.parent = diverController.tank.transform;
                 targetFish.transform.localPosition = Vector3.zero;

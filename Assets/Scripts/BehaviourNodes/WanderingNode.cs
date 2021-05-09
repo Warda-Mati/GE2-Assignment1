@@ -23,10 +23,9 @@ public class WanderingNode : Node
         }
         if (diver.isNearFish)
         {
-            
             diver.GetComponent<NoiseWander>().enabled = false;
             addWander = false;
-            _state = NodeState.SUCCESS;
+            //_state = NodeState.SUCCESS;
             return NodeState.SUCCESS;
         }
         return NodeState.RUNNING;

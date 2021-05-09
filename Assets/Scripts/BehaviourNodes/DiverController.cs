@@ -35,7 +35,7 @@ public class DiverController : MonoBehaviour
     private void Awake()
     {
         ConstructBehaviourTree();
-        startPos = this.transform.position;
+        startPos = new Vector3(-5,-10,8);
         _nodes = new Node[6];
         _nodes[0] = wanderingNode;
         _nodes[1] = pursueNode;
@@ -72,11 +72,11 @@ public class DiverController : MonoBehaviour
         Sequence dropFishSequence = new Sequence(new List<Node> {GoToBoatNode, GoToStart});
 
         sequences = new[] {wanderSequence, collectSequence, dropFishSequence};
-        //Sequence diverAction = new Sequence(new List<Node>
-        //    {wanderingNode, pursueNode, shootNode, collectNode, goToBoatNode, goToStart});
+        Sequence diverAction = new Sequence(new List<Node>
+            {pursueNode, shootNode, collectNode, GoToBoatNode, GoToStart});
 
-        //root = new Selector(new List<Node> {diverAction});
-        root = new Sequence(new List<Node> {wanderSequence,collectSequence,dropFishSequence});
+        root = new Sequence(new List<Node> {diverAction});
+        //root = new Sequence(new List<Node> {wanderSequence,collectSequence,dropFishSequence});
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,7 +85,6 @@ public class DiverController : MonoBehaviour
         {
             isNearFish = true;
             pursueNode.targetFish =  other.gameObject.GetComponent<FishBoid>();
-            //shootNode.targetFish = pursueNode.targetFish;
             targetFish = other.gameObject.GetComponent<FishBoid>();
         }
     }
@@ -104,6 +103,13 @@ public class DiverController : MonoBehaviour
         Instantiate(harpoon, harpoonGun.transform.position, harpoonGun.transform.rotation);
     }
 
+    public void RevertStates()
+    {
+        foreach (Node node in _nodes)
+        {
+            node.nodeState = NodeState.RUNNING;
+        }
+    }
     IEnumerator showStates()
     {
         while (true)
