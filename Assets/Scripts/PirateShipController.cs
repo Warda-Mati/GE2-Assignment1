@@ -24,8 +24,23 @@ public class PirateShipController : MonoBehaviour
         {
             piratesNearby = true;
         }
-        
     }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "pirates")
+        {
+            if (other.gameObject.GetComponent<PirateShipController>().health < 0)
+            {
+                Debug.Log("enemy pirate defeated");
+                piratesNearby = false;
+            }
+        }
+    }
+    
+    
+    
+    
 
     // Update is called once per frame
     void Update()
@@ -34,6 +49,11 @@ public class PirateShipController : MonoBehaviour
         {
             GetComponent<StateMachine>().ChangeState(new ShipSink());
         }
+    }
+
+    void DestroyShip()
+    {
+        Destroy(this.gameObject);
     }
 }
 
@@ -68,16 +88,24 @@ class AttackShip : State
     {
         //owner.GetComponent<MoveToAttack>().enabled = true;
         pirate = owner.GetComponent<PirateShipController>();
+        owner.GetComponent<MoveToAttack>().enabled = true;
     }
 
     public override void Think()
     {
-        owner.GetComponent<MoveToAttack>().enabled = true;
+        
+        
+        if (pirate.piratesNearby == false)
+        {
+            Debug.Log("changing state to ship moving");
+            owner.ChangeState(new ShipMoving());
+        }
     }
 
     public override void Exit()
     {
         owner.GetComponent<MoveToAttack>().enabled = false;
+        owner.GetComponent<FireCannon>().enabled = false;
     }
 }
 
@@ -86,13 +114,13 @@ class ShipSink : State
     private float time = 0;
     public override void Enter()
     {
-        owner.GetComponent<MoveToAttack>().enabled = false;
-        owner.GetComponent<FireCannon>().enabled = false;
+
     }
 
     public override void Think()
     {
         owner.GetComponent<DolphinFlip>().enabled = true;
+        owner.GetComponent<PirateShipController>().Invoke("DestroyShip",10);
     }
 
     public override void Exit()

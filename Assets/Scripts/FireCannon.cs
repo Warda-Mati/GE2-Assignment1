@@ -23,10 +23,16 @@ public class FireCannon : MonoBehaviour
     {
         while (true)
         {
-            Transform chosenCannon = cannons[Random.Range (0, cannons.Count)];
-            Instantiate(fireParticle, chosenCannon.position, chosenCannon.rotation);
-            Instantiate(cannonBallPrefab, chosenCannon.position, chosenCannon.rotation);
-            yield return new WaitForSeconds(1);
+            if (GetComponent<PirateShipController>().piratesNearby)
+            {
+                Transform chosenCannon = cannons[Random.Range (0, cannons.Count)];
+                Instantiate(fireParticle, chosenCannon.position, chosenCannon.rotation);
+                Instantiate(cannonBallPrefab, chosenCannon.position, chosenCannon.rotation);
+                yield return new WaitForSeconds(1);
+            }
+
+            yield return null;
+
         }
     }
 
