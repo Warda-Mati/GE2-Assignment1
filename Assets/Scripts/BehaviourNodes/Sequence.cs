@@ -22,10 +22,10 @@ public class Sequence : Node
                     _state = NodeState.FAILURE;
                     return _state;
                 case NodeState.SUCCESS:
-                    continue;
+                    break;
                 case NodeState.RUNNING:
                     node_running = true;
-                    continue;
+                    break;
                 default:
                     _state = NodeState.RUNNING;
                     return _state;

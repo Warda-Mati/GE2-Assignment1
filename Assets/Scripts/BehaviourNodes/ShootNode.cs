@@ -17,11 +17,10 @@ public class ShootNode : Node
 
     public override NodeState Evaluate()
     {
-        Vector3 toFish = targetFish.transform.position - diver.transform.position;
-        diver.transform.rotation = Quaternion.RotateTowards(diver.transform.rotation,
-            Quaternion.LookRotation(toFish)
-            , rotSpeed * Time.deltaTime
-        );
+        if(_state == NodeState.SUCCESS)
+            return NodeState.SUCCESS;
+        
+      
         if (!beginShooting)
         {
             diver.InvokeRepeating("ShootHarpoons",5,2);
@@ -30,7 +29,8 @@ public class ShootNode : Node
 
         if (GameObject.FindGameObjectsWithTag("dead").Length > 0)
         {
-            
+            if(_state == NodeState.SUCCESS)
+            _state = NodeState.SUCCESS;
             return NodeState.SUCCESS;   
         }
 

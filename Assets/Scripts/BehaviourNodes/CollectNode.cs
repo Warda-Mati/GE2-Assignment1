@@ -11,14 +11,16 @@ public class CollectNode : Node
     {
         this.diverController = diver;
     }
-    
+
     public override NodeState Evaluate()
     {
-       
+        if(_state == NodeState.SUCCESS)
+            return NodeState.SUCCESS;
+        
         deadFish = GameObject.FindGameObjectsWithTag("dead");
         if (deadFish.Length > 0 && !diverController.fishCollected)
         {
-            
+
             Seek diverSeek = diverController.GetComponent<Seek>();
             diverSeek.enabled = true;
             diverSeek.targetGameObject = deadFish[0];
@@ -30,17 +32,12 @@ public class CollectNode : Node
                 targetFish.tag = "collected";
                 diverController.fishCollected = true;
                 diverSeek.targetGameObject = null;
+                _state = NodeState.SUCCESS;
                 return NodeState.SUCCESS;
             }
-            else
-            {
-                return NodeState.RUNNING;
-            }
-            
+
         }
-        else
-        {
-            return NodeState.FAILURE;
-        }
+
+        return NodeState.RUNNING;
     }
 }

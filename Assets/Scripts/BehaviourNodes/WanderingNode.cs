@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WanderingNode : Node
 {
+    
     private DiverController diver;
     private bool addWander = false;
     public WanderingNode(DiverController diver)
@@ -12,6 +13,9 @@ public class WanderingNode : Node
     }
     public override NodeState Evaluate()
     {
+        if(_state == NodeState.SUCCESS)
+            return NodeState.SUCCESS;
+            
         if (!addWander)
         {
             diver.GetComponent<NoiseWander>().enabled = true;
@@ -19,13 +23,13 @@ public class WanderingNode : Node
         }
         if (diver.isNearFish)
         {
+            
             diver.GetComponent<NoiseWander>().enabled = false;
             addWander = false;
+            _state = NodeState.SUCCESS;
             return NodeState.SUCCESS;
         }
-        else
-        {
-            return NodeState.RUNNING;
-        }
+        return NodeState.RUNNING;
+        
     }
 }

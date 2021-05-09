@@ -14,7 +14,11 @@ public class GoToBoatNode : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Go to boat");
+        if (_state == NodeState.SUCCESS)
+        {
+            return NodeState.SUCCESS;
+        }
+  
         if (diver.fishCollected)
         {
             diver.GetComponent<Seek>().targetGameObject = boat;
@@ -28,11 +32,8 @@ public class GoToBoatNode : Node
                 return NodeState.SUCCESS;
             }
 
-            return NodeState.RUNNING;
-            
         }
-
-        return NodeState.FAILURE;
+        return NodeState.RUNNING;
 
     }
 }

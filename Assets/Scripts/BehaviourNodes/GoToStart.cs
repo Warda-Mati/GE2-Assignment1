@@ -12,10 +12,11 @@ public class GoToStart : Node
     }
     public override NodeState Evaluate()
     {
-        Debug.Log("Go to start");
+        
         diver.GetComponent<Seek>().target = diver.startPos;
         if (Vector3.Distance(diver.transform.position, diver.startPos) < 1)
         {
+           
             return NodeState.SUCCESS;
         }
 

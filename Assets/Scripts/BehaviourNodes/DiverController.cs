@@ -9,8 +9,14 @@ public class DiverController : MonoBehaviour
     public FishBoid targetFish;
     private Node root;
 
+    private WanderingNode wanderingNode;
     private PursueNode pursueNode;
     private ShootNode shootNode;
+    private CollectNode collectNode;
+    private GoToBoatNode GoToBoatNode;
+    private GoToStart GoToStart;
+
+    private Node[] _nodes;
     
     public GameObject harpoonGun;
     public GameObject harpoon;
@@ -23,11 +29,21 @@ public class DiverController : MonoBehaviour
     public GameObject boat;
 
     public Vector3 startPos;
+
+    public Node[] sequences;
     // Start is called before the first frame update
     private void Awake()
     {
         ConstructBehaviourTree();
         startPos = this.transform.position;
+        _nodes = new Node[6];
+        _nodes[0] = wanderingNode;
+        _nodes[1] = pursueNode;
+        _nodes[2] = shootNode;
+        _nodes[3] = collectNode;
+        _nodes[4] = GoToBoatNode;
+        _nodes[5] = GoToStart;
+        StartCoroutine(showStates());
     }
     
     // Update is called once per frame
@@ -38,22 +54,28 @@ public class DiverController : MonoBehaviour
 
     void ConstructBehaviourTree()
     {
-        WanderingNode wanderingNode = new WanderingNode(this);
+        wanderingNode = new WanderingNode(this);
         pursueNode = new PursueNode(this, targetFish);
 
         shootNode = new ShootNode(this);
 
-        CollectNode collectNode = new CollectNode(this);
+        collectNode = new CollectNode(this);
 
-        GoToBoatNode goToBoatNode = new GoToBoatNode(this, boat);
-        GoToStart goToStart = new GoToStart(this);
+        GoToBoatNode = new GoToBoatNode(this, boat);
+        GoToStart = new GoToStart(this);
 
+        
+        
         
         Sequence wanderSequence = new Sequence(new List<Node> {wanderingNode});
-        Sequence collectSequence = new Sequence(new List<Node> {pursueNode, shootNode, collectNode});
-        Sequence dropFishSequence = new Sequence(new List<Node> {goToBoatNode, goToStart});
-        
+        Sequence collectSequence = new Sequence(new List<Node> {pursueNode,collectNode});
+        Sequence dropFishSequence = new Sequence(new List<Node> {GoToBoatNode, GoToStart});
 
+        sequences = new[] {wanderSequence, collectSequence, dropFishSequence};
+        //Sequence diverAction = new Sequence(new List<Node>
+        //    {wanderingNode, pursueNode, shootNode, collectNode, goToBoatNode, goToStart});
+
+        //root = new Selector(new List<Node> {diverAction});
         root = new Sequence(new List<Node> {wanderSequence,collectSequence,dropFishSequence});
     }
 
@@ -63,7 +85,7 @@ public class DiverController : MonoBehaviour
         {
             isNearFish = true;
             pursueNode.targetFish =  other.gameObject.GetComponent<FishBoid>();
-            shootNode.targetFish = pursueNode.targetFish;
+            //shootNode.targetFish = pursueNode.targetFish;
             targetFish = other.gameObject.GetComponent<FishBoid>();
         }
     }
@@ -80,5 +102,20 @@ public class DiverController : MonoBehaviour
         arm.GetComponent<HarmonicWave>().enabled = false;
         arm.transform.localRotation = Quaternion.identity;
         Instantiate(harpoon, harpoonGun.transform.position, harpoonGun.transform.rotation);
+    }
+
+    IEnumerator showStates()
+    {
+        while (true)
+        {
+            String[] nodeNames = new[] {"wandering","pursue","shoot","collect","boat","start"};
+            String[] sequenceNames = {"wander", "collect", "go"};
+            for (int i = 0; i < _nodes.Length; i++)
+            {
+                Debug.Log("Node " + nodeNames[i] + " -> " + _nodes[i].nodeState);
+            }
+          
+            yield return new WaitForSeconds(2);
+        }
     }
 }
