@@ -59,12 +59,13 @@ class PursueFish : State
     public override void Enter()
     {
         owner.GetComponent<Pursue>().enabled = true;
+        owner.GetComponent<FishBoid>().maxSpeed = 10;
         owner.GetComponent<ObstacleAvoidance>().enabled = true;
     }
 
     public override void Think()
     {
-        if (Vector3.Distance(owner.transform.position, owner.GetComponent<Pursue>().target.transform.position) > 10f)
+        if (Vector3.Distance(owner.GetComponent<Pursue>().target.transform.position,owner.transform.position) > 20f)
         {
             owner.ChangeState(new SharkPath());
         }
@@ -75,6 +76,7 @@ class PursueFish : State
         owner.GetComponent<SharkController>().pursueingFish = false;
         owner.GetComponent<Pursue>().target = null;
         owner.GetComponent<Pursue>().enabled = false;
+        owner.GetComponent<FishBoid>().maxSpeed = 4;
         owner.GetComponent<ObstacleAvoidance>().enabled = false;
     }
 }
