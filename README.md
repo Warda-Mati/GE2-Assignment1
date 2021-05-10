@@ -7,6 +7,10 @@ in flocks wandering and having obstacle avoidance.
 
 So this project contains the following
 
+# IMPORTANT NOTE
+Most code audio and prefabs are found with in Assets/Games Engines 2/Scripts
+rest are majority downloaded assets
+
 # Pirate Ship Battle
 
 Pirate ships uses noise wander to move, and uses state machines to handle what happens when the come near each other, which is rotate and fire cannons.
