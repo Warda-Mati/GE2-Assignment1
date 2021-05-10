@@ -32,3 +32,6 @@ Uses behaviour trees to manage it's transitions. it will pursue a fish and shoot
 
 # Blue Fish
 uses flow field path follwing. the flow field is generated using perlin noise, it will follwing the flow field while seeking a target that moves when the fish get near
+
+# Youtube video link 
+https://www.youtube.com/watch?v=uhwxESHknUY
