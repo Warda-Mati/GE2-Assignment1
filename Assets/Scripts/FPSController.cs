@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ public class FPSController : MonoBehaviour
     public bool allowPitch = true;
 
     public GUIStyle style;
+
+    public AudioClip islandMusic;
     // Use this for initialization
     void Start()
     {
@@ -20,6 +23,15 @@ public class FPSController : MonoBehaviour
         {
             mainCamera = Camera.main.gameObject;
         }
+    }
+
+    private void OnEnable()
+    {
+        if(GetComponent<AudioSource>().isPlaying)
+            GetComponent<AudioSource>().Pause();
+        
+        GetComponent<AudioSource>().clip = islandMusic;
+        GetComponent<AudioSource>().Play();
     }
 
     void Yaw(float angle)

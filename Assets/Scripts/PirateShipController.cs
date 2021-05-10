@@ -10,7 +10,7 @@ public class PirateShipController : MonoBehaviour
     public bool piratesNearby = false;
     public int health;
 
-    public ParticleSystem explosion;
+    public GameObject explosion;
     
     private void Awake()
     {
@@ -55,8 +55,11 @@ public class PirateShipController : MonoBehaviour
 
     void DestroyShip()
     {
-        explosion.Play();
-        Destroy(this.gameObject);
+        GameObject explosionObj = Instantiate(explosion);
+        explosionObj.transform.position = transform.position;
+        
+        explosionObj.GetComponent<ParticleSystem>().Play();
+        Destroy(gameObject);
     }
 }
 

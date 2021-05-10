@@ -16,6 +16,7 @@ TagManager:
   - harpoon
   - dead
   - collected
+  - sinking
   layers:
   - Default
   - TransparentFX
