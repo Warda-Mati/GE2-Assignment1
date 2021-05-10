@@ -10,19 +10,28 @@ public class FollowCam : MonoBehaviour
     public float density;
 
     public float speed;
-
+    private bool startScene;
     public AudioClip battle;
+
+    public GameObject underwaterElements;
     // Start is called before the first frame update
     void Start()
     {
         RenderSettings.ambientLight = Color.black;
+        underwaterElements.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null || otherShip == null)
+        if (target == null)
         {
+            Destroy(otherShip.gameObject);
+            GetComponent<FPSController>().enabled = true;
+            Destroy(this);
+        }else if (otherShip == null)
+        {
+            Destroy(target.gameObject);
             GetComponent<FPSController>().enabled = true;
             Destroy(this);
         }
@@ -67,7 +76,15 @@ public class FollowCam : MonoBehaviour
 
     void goToSink(Transform ship)
     {
+        if (!startScene)
+        {
+            underwaterElements.SetActive(true);
+            startScene = true;
+        }
+           
+        
         Transform deathTarget = ship.GetChild(target.childCount - 1);
+        //deathTarget.Translate(Vector3.down * speed * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, deathTarget.position, Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, deathTarget.rotation, Time.deltaTime);
         GetComponent<Fog>().enabled = true;
