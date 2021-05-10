@@ -13,6 +13,7 @@ public class Flocking : MonoBehaviour
 
     public List<GameObject> allfishes;
 
+    public bool doryFlock;
     public int radius;
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +28,16 @@ public class Flocking : MonoBehaviour
             allFish[i].name = "Fish " + i;
             allFish[i].tag = "fish";
             allFish[i].AddComponent<FlockingBehaviour>();
+            if (doryFlock)
+            {
+                allFish[i].transform.parent = transform.parent;
+                allFish[i].GetComponent<FollowFlowField>().flowFieldGrid = transform.parent.GetComponent<FlowFieldGrid>();
+                allFish[i].GetComponent<FollowFlowField>().target = transform.parent.GetComponent<FlowFieldGrid>().target;
+            }
+                
+            else 
+                allFish[i].transform.parent = transform;
+            
             allfishes.Add(allFish[i]);
         }
 

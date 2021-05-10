@@ -8,6 +8,8 @@ public class FlowFieldGrid : MonoBehaviour
     public Vector2[,] field;
     public Vector3[,] direction;
     public int column, rows;
+
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {

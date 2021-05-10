@@ -22,8 +22,8 @@ public class FollowFlowField : SteeringBehavior
     {
         if (Vector3.Distance(target.position, transform.position) < range)
         {
-            float posX = Random.Range(0, flowFieldGrid.rows);
-            float posZ = Random.Range(0, flowFieldGrid.column);
+            float posX = Random.Range(0, flowFieldGrid.column);
+            float posZ = Random.Range(0, flowFieldGrid.rows);
             target.localPosition =
                 new Vector3(posX, 0, posZ);
         }
