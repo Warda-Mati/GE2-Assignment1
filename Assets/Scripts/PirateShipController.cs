@@ -111,10 +111,10 @@ class AttackShip : State
 
 class ShipSink : State
 {
-    private float time = 0;
+   
     public override void Enter()
     {
-
+        owner.tag = "sinking";
     }
 
     public override void Think()
