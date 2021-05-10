@@ -33,6 +33,8 @@ public class Flocking : MonoBehaviour
                 allFish[i].transform.parent = transform.parent;
                 allFish[i].GetComponent<FollowFlowField>().flowFieldGrid = transform.parent.GetComponent<FlowFieldGrid>();
                 allFish[i].GetComponent<FollowFlowField>().target = transform.parent.GetComponent<FlowFieldGrid>().target;
+                allFish[i].name = "Fish " + i;
+                allFish[i].tag = "Untagged";
             }
                 
             else 

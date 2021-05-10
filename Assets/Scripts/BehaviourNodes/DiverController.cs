@@ -32,7 +32,21 @@ public class DiverController : MonoBehaviour
 
     public Node[] sequences;
     // Start is called before the first frame update
-    private void Awake()
+    /*private void Awake()
+    {
+        ConstructBehaviourTree();
+        startPos = new Vector3(-5,-10,8);
+        _nodes = new Node[6];
+        _nodes[0] = wanderingNode;
+        _nodes[1] = pursueNode;
+        _nodes[2] = shootNode;
+        _nodes[3] = collectNode;
+        _nodes[4] = GoToBoatNode;
+        _nodes[5] = GoToStart;
+        StartCoroutine(showStates());
+    }*/
+
+    private void OnEnable()
     {
         ConstructBehaviourTree();
         startPos = new Vector3(-5,-10,8);
@@ -45,6 +59,9 @@ public class DiverController : MonoBehaviour
         _nodes[5] = GoToStart;
         StartCoroutine(showStates());
     }
+
+    
+  
     
     // Update is called once per frame
     void Update()

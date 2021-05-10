@@ -12,10 +12,11 @@ public class GoToStart : Node
     }
     public override NodeState Evaluate()
     {
-        
         diver.GetComponent<Seek>().target = diver.startPos;
-        if (Vector3.Distance(diver.transform.position, diver.startPos) < 4)
+        Debug.Log("Distance" + Vector3.Distance(diver.transform.position, diver.startPos));
+        if (Vector3.Distance(diver.transform.position, diver.startPos) < 5)
         {
+            Debug.Log("returned");
             diver.GetComponent<Seek>().enabled = false;
             //diver.GetComponent<FishBoid>().acceleration = Vector3.zero;
             //diver.GetComponent<FishBoid>().force = Vector3.zero;

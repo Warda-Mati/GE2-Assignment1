@@ -71,6 +71,11 @@ public class DolphinController : MonoBehaviour
             }
         }
     }
+
+    public void goToPath()
+    {
+        GetComponent<StateMachine>().ChangeState(new FollowPathState());
+    }
 }
 
 class MovetoDive : State
@@ -107,7 +112,8 @@ class DiveState : State
     {
         if (owner.GetComponent<DolphinController>().splashesCounter == 3)
         {
-            owner.ChangeState(new FollowPathState());
+            owner.GetComponent<DolphinController>().Invoke("goToPath",3);
+            //owner.ChangeState(new FollowPathState());
         }
     }
 

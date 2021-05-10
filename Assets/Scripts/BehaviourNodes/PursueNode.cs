@@ -34,8 +34,9 @@ public class PursueNode : Node
         if (!addPursue)
         {
             diver.gameObject.GetComponent<Pursue>().enabled = true;
-            FishBoid[] fishes = GameObject.FindObjectsOfType<FishBoid>();
-            diver.GetComponent<Pursue>().target = fishes[0];
+            //FishBoid[] fishes = GameObject.FindObjectsOfType<FishBoid>();
+            GameObject[] fishes = GameObject.FindGameObjectsWithTag("fish");
+            diver.GetComponent<Pursue>().target = fishes[0].GetComponent<FishBoid>();
             diver.GetComponent<FishBoid>().maxSpeed = 5;
             diver.InvokeRepeating("ShootHarpoons",5,2);
             addPursue = true;

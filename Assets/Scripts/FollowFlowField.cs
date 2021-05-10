@@ -12,9 +12,10 @@ public class FollowFlowField : SteeringBehavior
 
     public int range;
     // Start is called before the first frame update
+    public float height;
     void Start()
     {
-        
+        height = target.transform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class FollowFlowField : SteeringBehavior
             float posX = Random.Range(0, flowFieldGrid.column);
             float posZ = Random.Range(0, flowFieldGrid.rows);
             target.localPosition =
-                new Vector3(posX, 0, posZ);
+                new Vector3(posX, height, posZ);
         }
     }
 
