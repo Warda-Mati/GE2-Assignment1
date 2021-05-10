@@ -9,6 +9,8 @@ public class PirateShipController : MonoBehaviour
 
     public bool piratesNearby = false;
     public int health;
+
+    public ParticleSystem explosion;
     
     private void Awake()
     {
@@ -53,6 +55,7 @@ public class PirateShipController : MonoBehaviour
 
     void DestroyShip()
     {
+        explosion.Play();
         Destroy(this.gameObject);
     }
 }
@@ -120,7 +123,7 @@ class ShipSink : State
     public override void Think()
     {
         owner.GetComponent<DolphinFlip>().enabled = true;
-        owner.GetComponent<PirateShipController>().Invoke("DestroyShip",10);
+        owner.GetComponent<PirateShipController>().Invoke("DestroyShip",16);
     }
 
     public override void Exit()

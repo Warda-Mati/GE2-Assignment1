@@ -21,6 +21,14 @@ public class FollowCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null || otherShip == null)
+        {
+            GetComponent<FPSController>().enabled = true;
+            Destroy(this);
+        }
+            
+        
+        
         if (target.gameObject.GetComponent<MoveToAttack>().enabled)
         {
             Vector3 newPos = target.transform.position;
@@ -51,8 +59,10 @@ public class FollowCam : MonoBehaviour
         {
             goToSink(otherShip);
         }
+
         
-       
+
+
     }
 
     void goToSink(Transform ship)
@@ -60,6 +70,7 @@ public class FollowCam : MonoBehaviour
         Transform deathTarget = ship.GetChild(target.childCount - 1);
         transform.position = Vector3.Lerp(transform.position, deathTarget.position, Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, deathTarget.rotation, Time.deltaTime);
+        GetComponent<Fog>().enabled = true;
     }
 
    
