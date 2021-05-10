@@ -11,6 +11,8 @@ public class PirateShipController : MonoBehaviour
     public int health;
 
     public GameObject explosion;
+
+    public AudioClip shipExploded;
     
     private void Awake()
     {
@@ -59,6 +61,7 @@ public class PirateShipController : MonoBehaviour
         explosionObj.transform.position = transform.position;
         
         explosionObj.GetComponent<ParticleSystem>().Play();
+        explosionObj.GetComponent<AudioSource>().Play();
         Destroy(gameObject);
     }
 }

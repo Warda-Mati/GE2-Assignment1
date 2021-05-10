@@ -38,6 +38,12 @@ public class CameraFollow : MonoBehaviour
         Vector3 toPos = Vector3.Lerp(toTarget, transform.position, speed * Time.deltaTime);
         transform.position = toPos;
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            GetComponent<FPSController>().enabled = true;
+            enabled = false;
+        }
+
     }
 
     IEnumerator switchCamera()

@@ -112,7 +112,7 @@ class DiveState : State
     {
         if (owner.GetComponent<DolphinController>().splashesCounter == 3)
         {
-            owner.GetComponent<DolphinController>().Invoke("goToPath",3);
+            owner.GetComponent<DolphinController>().Invoke("goToPath",2);
             //owner.ChangeState(new FollowPathState());
         }
     }

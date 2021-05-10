@@ -8,6 +8,8 @@ public class FireCannon : MonoBehaviour
     public GameObject cannonBallPrefab;
     private List<Transform> cannons = new List<Transform>();
     public GameObject fireParticle;
+
+    public AudioClip cannonFire;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class FireCannon : MonoBehaviour
         {
             if (GetComponent<PirateShipController>().piratesNearby)
             {
+                GetComponent<AudioSource>().Pause();
+                GetComponent<AudioSource>().Play();
                 Transform chosenCannon = cannons[Random.Range (0, cannons.Count)];
                 Instantiate(fireParticle, chosenCannon.position, chosenCannon.rotation);
                 Instantiate(cannonBallPrefab, chosenCannon.position, chosenCannon.rotation);

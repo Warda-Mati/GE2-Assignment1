@@ -57,9 +57,10 @@ public class FishBoid : MonoBehaviour
     {
         Vector3 desired = target - transform.position;
         desired.Normalize();
-        desired *= (maxSpeed*3);
-        Vector2 horizDesired = new Vector2(desired.x, desired.z);
-        Vector2 horizVelocity = new Vector2(velocity.x, velocity.z);
+        maxSpeed = 6;
+        desired *= maxSpeed;
+        Vector3 horizDesired = new Vector3(desired.x,0, desired.z);
+        Vector3 horizVelocity = new Vector3(velocity.x, 0, velocity.z);
         return horizDesired - horizVelocity;
     }
 
