@@ -122,6 +122,12 @@ public class FPSController : MonoBehaviour
             Fly(-speed * Time.deltaTime);
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            GetComponent<CameraFollow>().enabled = true;
+            enabled = false;
+        }
+
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
             
