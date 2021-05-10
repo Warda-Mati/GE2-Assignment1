@@ -6,51 +6,38 @@ using Random = System.Random;
 
 public class CameraFollow : MonoBehaviour
 {
-    public List<Transform> cameraTarget = new List<Transform>();
-    public float speed;
-    public float angle;
+    public List<GameObject> cameraTarget = new List<GameObject>();
+    public int speed;
     public Vector3 spacing;
 
     public int index;
 
-    public bool rotated;
-
-    private Transform toTarget;
     // Start is called before the first frame update
     void Start()
     {
         index = 0;
         for (int i = 0; i < cameraTarget.Count; i++)
         {
-            if (cameraTarget[i].gameObject.tag == "flock")
+            if (cameraTarget[i].tag == "flock")
             {
                 Random randomFish = new Random();
                 int chosenFish = randomFish.Next(0, cameraTarget[i].GetComponent<Flocking>().flockSize);
-                cameraTarget[i] = cameraTarget[i].GetComponent<Flocking>().allfishes[chosenFish].transform;
+                Debug.Log(cameraTarget[i].GetComponent<Flocking>().allfishes[chosenFish].name);
+                cameraTarget[i] = cameraTarget[i].GetComponent<Flocking>().allfishes[chosenFish];
             }
         }
-        
+
         StartCoroutine(switchCamera());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        toTarget = cameraTarget[index].transform;
-        toTarget.transform.LookAt(cameraTarget[index].transform.parent);
-        Vector3 toPos = Vector3.Lerp(toTarget.position, transform.position, speed * Time.deltaTime);
-        transform.position = toPos - spacing;
+        transform.LookAt(cameraTarget[index].transform);
+        Vector3 toTarget = cameraTarget[index].transform.position - spacing;
+        Vector3 toPos = Vector3.Lerp(toTarget, transform.position, speed * Time.deltaTime);
+        transform.position = toPos;
 
-        
-        
-        if (Input.GetKey(KeyCode.R))
-        {
-            rotated = true;
-            Debug.Log("rotating");
-            //toTarget.transform.RotateAround(Vector3.right * angle * Time.deltaTime);
-        }
-        
     }
 
     IEnumerator switchCamera()
