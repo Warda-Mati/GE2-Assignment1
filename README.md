@@ -45,10 +45,20 @@ Press L to alterante between creatures
 Press E to go back to FPScontroller
 Press P while focused on dolphins to make them flip
 
-# Classes wrote myself
-- Steering Behaviours : Flocking.cs (creates the flock), FlockingBehaviour.cs (cohesion,seperation,alignment, influenced by lecture notes)
+# Classes wrote myself 
+- Steering Behaviours : Flocking.cs (creates the flock), FlockingBehaviour.cs (cohesion,seperation,alignment, influenced by lecture notes), rest behaviours are from class
 - Flowfield code : Flowfieldgrid.cs (adapted from nature of code https://natureofcode.com/book/chapter-6-autonomous-agents/), FollowFlowfield.cs ( wrote myself ) , others are unused, adapted from https://www.youtube.com/watch?v=zr6ObNVgytk).
 - Behaviour Tree : Selector.cs, Inverter.cs, Node.cs, Sequence.cs adapted from https://hub.packtpub.com/building-your-own-basic-behavior-tree-tutorial/, different behavour nodes (collect, shoot, pursue, wander, are written myself), Divercontroller inspired by https://github.com/GameDevChef/BehaviourTrees
+- State Machine : All behaviours and controllers are written by me, however state machine code was from class
+
+# Art Assets
+Majority from sketchfab and turbosquid (plant life, dolphins, crabs), with few like the boats and water, fish particle affects from unity asset store
+
+# Graphical
+- Used particle systems on the corals, explosion of the pirate ship, used assets are used for cannons firing and exploding, assets used for dolphin splashes when rising above water, and assets from unity for bubble particle
+- Used trail renderes on the fish
+- Used unity terrain system to make terrain, and trees
+- Used blob projector, fog, and Caustic.cs which is looping through images of caustics made by the app caustics generator for underwater effect ( ref : https://medium.com/@mukulkhanna/creating-basic-underwater-effects-in-unity-9a9400bde928 )
 
 # What I'm most proud of
 I'm really proud of how the scene looks and the behaviours used to implement the scene. My favrioute behaviour is the flow field, the perlin noise flow field really makes it cool to watch the fish transverse. Flocking is another behaviour that's really cool, seeing fish move like that, and I am proud I managed to get it done before it was taught in class. Although not perfect, I'm proud of exploring new techniques such as behaviour trees and understand how they work, even though I didn't implement it completely right I hope to study it further and use it to create complex behaviours in the future. Overall I'm really glad how it turned out, I spent alot of time and it really turned out cool
