@@ -64,16 +64,13 @@ public class DolphinController : MonoBehaviour
                 GameObject splash = Instantiate(splashPrefab, pos, Quaternion.Euler(90,0,0));
                 splash.GetComponent<ParticleSystem>().Play();
             }
-            else
-            {
-                splashesCounter = 0;
-                diving = false;
-            }
         }
     }
 
     public void goToPath()
     {
+        splashesCounter = 0;
+        diving = false;
         GetComponent<StateMachine>().ChangeState(new FollowPathState());
     }
 }
@@ -110,6 +107,7 @@ class DiveState : State
 
     public override void Think()
     {
+        // finished
         if (owner.GetComponent<DolphinController>().splashesCounter == 3)
         {
             owner.GetComponent<DolphinController>().Invoke("goToPath",2);

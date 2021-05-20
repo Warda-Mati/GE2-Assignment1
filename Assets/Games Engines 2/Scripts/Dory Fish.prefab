@@ -52,7 +52,7 @@ MonoBehaviour:
   mass: 1
   damping: 0.01
   banking: 0.1
-  maxSpeed: 5
+  maxSpeed: 6
   maxForce: 10
 --- !u!114 &8571225236312088626
 MonoBehaviour:
@@ -72,7 +72,8 @@ MonoBehaviour:
   flowFieldGrid: {fileID: 5836915390553646561, guid: 15bbc59c61332e14f9b3a643d7366508,
     type: 3}
   target: {fileID: 5405438547902855232, guid: 3916cebad4050744cb8934d99768817b, type: 3}
-  range: 3
+  range: 4
+  height: 0
 --- !u!114 &8571225236312088628
 MonoBehaviour:
   m_ObjectHideFlags: 0

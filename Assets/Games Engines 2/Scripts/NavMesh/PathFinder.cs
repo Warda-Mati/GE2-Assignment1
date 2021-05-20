@@ -6,10 +6,12 @@ using UnityEngine;
     
 public class PathFinder : MonoBehaviour
 {
+    
+    
     public float gridSize = 5.0f; 
     public string message = "";    
     public bool isThreeD = false;
-
+    
     Dictionary<Vector3, QueueNode> open = new Dictionary<Vector3, QueueNode>(20000);
     PriorityQueue<QueueNode> openPQ = new PriorityQueue<QueueNode>();
 
@@ -27,13 +29,13 @@ public class PathFinder : MonoBehaviour
     {
         if (! Application.isPlaying)
         {
-            FindPath(start.position, end.position);    
+            FindFishPath(start.position, end.position);    
         }
     }
 
     public void Start()
     {
-        FindPath(start.position, end.position);
+        FindFishPath(start.position, end.position);
     }
 
     Vector3 PositionToVoxel(Vector3 v)
@@ -45,17 +47,22 @@ public class PathFinder : MonoBehaviour
         return ret;
     }
 
-    public FishPath FindPath(Vector3 start, Vector3 end)
+    public FishPath FindFishPath(Vector3 start, Vector3 end)
     {
         long oldNow = DateTime.Now.Ticks;
         bool found = false;
+        
+   
         this.endPos = PositionToVoxel(start); // end refers to start
         this.startPos = PositionToVoxel(end); // start refers to end
 
+        // all lists are empited
         open.Clear();
         closed.Clear();
         openPQ.Clear();
 
+        // creates first QueueNode, all values are sent to 0,
+        // and add it to the open list
         QueueNode first = new QueueNode();
         first.f = first.g = first.h = 0.0f;
         first.pos = this.startPos;
@@ -67,6 +74,8 @@ public class PathFinder : MonoBehaviour
         int maxSize = 0;
         stopwatch.Start();
         bool timeout = false;
+        
+        // while there is a QueueNode in the open list
         while (open.Count > 0)
         {
             if (stopwatch.ElapsedMilliseconds > 5000)
@@ -81,42 +90,51 @@ public class PathFinder : MonoBehaviour
 
             if (usePQ)
             {
+                // remove the QueueNode we are on from the open list queue
                 current = openPQ.Dequeue();
             }
             else
-            {            
+            { 
+                // not using PQ hence can ignore for exam
                 // Get the top of the q
                 float min = float.MaxValue;
-                foreach (QueueNode node in open.Values)
+                foreach (QueueNode QueueNode in open.Values)
                 {
-                    if (node.f < min)
+                    if (QueueNode.f < min)
                     {
-                        current = node;
-                        min = node.f;
+                        current = QueueNode;
+                        min = QueueNode.f;
                     }
                 }
             }
+            // check if the current QueueNode is the end QueueNode, if so it is found
             if (current.pos.Equals(this.endPos))
             {
                 found = true;
                 break;
             }
-            addAdjacentNodes(current);
+            // add all adjancent QueueNodes to current
+            addAdjacentQueueNodes(current);
+            // removing it from the open list
             open.Remove(current.pos);
+            // adding it to the closed list
             closed[current.pos] = current;
         }
-        FishPath path = GetComponent<FishPath>();
+        // if found, make a FishPath. 
+        FishPath FishPath = GetComponent<FishPath>();
         if (found)
         {
-            path.waypoints.Clear();
-            path.waypoints.Add(this.start.position);
+            // backtrack from dest to start
+            // add all the parents of the QueueNodes
+            FishPath.waypoints.Clear();
+            FishPath.waypoints.Add(this.start.position);
             while (!current.pos.Equals(this.startPos))
             {
-                path.waypoints.Add(current.pos);
+                FishPath.waypoints.Add(current.pos);
                 current = current.parent;
             }
-            path.waypoints.Add(current.pos);
-            path.waypoints.Add(this.end.position); 
+            FishPath.waypoints.Add(current.pos);
+            FishPath.waypoints.Add(this.end.position); 
             message = "A * took: " + stopwatch.ElapsedMilliseconds + " milliseconds. Open list: " + maxSize;
 
         }
@@ -128,20 +146,23 @@ public class PathFinder : MonoBehaviour
             }
             else
             {
-                message = "No path found. Open list: " + maxSize;
+                message = "No FishPath found. Open list: " + maxSize;
             }
             
         }
         if (smooth)
         {
-            SmoothPath(path);
+            SmoothFishPath(FishPath);
         }
-        return path;
+        return FishPath;
     }
 
-    private void addAdjacentNodes(QueueNode current)
+    private void addAdjacentQueueNodes(QueueNode current)
     {
 
+        // -1 x, -1 y, -1 z, +1 x, +1 y, +1 z,
+        // finding all adjacent QueueNodes
+        // adding it if valid
         for(int x = -1 ; x <= 1 ; x ++)
         {
             int yrange = isThreeD ? 1 : 0;
@@ -161,43 +182,53 @@ public class PathFinder : MonoBehaviour
 
     private void AddIfValid(Vector3 pos, QueueNode parent)
     {
+        // ray cast to track any objects
+        // center of current QueueNode to center of adjacent QueueNode
         if ((!RayTrace(parent.pos, pos)))
         {
+            // if is not in closed list
             if (!closed.ContainsKey(pos))
             {
+                // if is not in open list
                 if (!open.ContainsKey(pos))
                 {
-                    QueueNode node = new QueueNode();
-                    node.pos = pos;
-                    node.g = parent.g + cost(node.pos, parent.pos);
-                    node.h = heuristic(pos, endPos);
-                    node.f = node.g + node.h;
-                    node.parent = parent;
+                    // create a new QueueNode, and calculate it's f, g and h score
+                    QueueNode QueueNode = new QueueNode();
+                    QueueNode.pos = pos;
+                    QueueNode.g = parent.g + cost(QueueNode.pos, parent.pos);
+                    QueueNode.h = heuristic(pos, endPos);
+                    QueueNode.f = QueueNode.g + QueueNode.h;
+                    // track it's parent
+                    QueueNode.parent = parent;
+                    // add it to the open list
                     if (usePQ)
                     {
-                        openPQ.Enqueue(node);
+                        openPQ.Enqueue(QueueNode);
                     }
-                    open[pos] = node;
+                    open[pos] = QueueNode;
                 }
                 else
                 {
                     // Edge relaxation?
-                    QueueNode node = open[pos];
-                    float g = parent.g + cost(node.pos, parent.pos);
-                    if (g < node.g)
+                    // if it's in the open list, recalculate g score.
+                    // if g score is lower, then update the QueueNode in open list
+                    // found new parent with shorter FishPath
+                    QueueNode QueueNode = open[pos];
+                    float g = parent.g + cost(QueueNode.pos, parent.pos);
+                    if (g < QueueNode.g)
                     {
-                        node.g = g;
-                        node.f = node.g + node.h;
-                        node.parent = parent;
+                        QueueNode.g = g;
+                        QueueNode.f = QueueNode.g + QueueNode.h;
+                        QueueNode.parent = parent;
                     }
                 }
             }
         }
     }
 
-    public void SmoothPath(FishPath path)
+    public void SmoothFishPath(FishPath FishPath)
     {
-        List<Vector3> wayPoints = path.waypoints;
+        List<Vector3> wayPoints = FishPath.waypoints;
 
         if (wayPoints.Count < 3)
         {
@@ -237,11 +268,13 @@ public class PathFinder : MonoBehaviour
 
     private float heuristic(Vector3 v1, Vector3 v2)
     {
+        // straight line difference, scaled by 10
         return 10.0f * (Math.Abs(v2.x - v1.x) + Math.Abs(v2.y - v1.y) + Math.Abs(v2.z - v1.z));
     }
 
     private float cost(Vector3 v1, Vector3 v2)
     {
+        // returning 10 or 14 if diagonal
         int dist = (int)Math.Abs(v2.x - v1.x) + (int)Math.Abs(v2.y - v1.y) + (int)Math.Abs(v2.z - v1.z);
         return (dist == 1) ? 10 : 14;
     }

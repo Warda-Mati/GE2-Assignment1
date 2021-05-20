@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+// PriorityQueue implementation from: http://visualstudiomagazine.com/articles/2012/11/01/priority-queues-with-c.aspx
 
 public class PriorityQueue<T> where T : IComparable<T>
 {
