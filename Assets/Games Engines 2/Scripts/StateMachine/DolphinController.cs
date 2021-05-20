@@ -9,7 +9,7 @@ public class DolphinController : MonoBehaviour
     public bool diving;
     public int splashesCounter;
     public GameObject splashPrefab;
-    private GameObject camera;
+    public GameObject camera;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,11 +22,18 @@ public class DolphinController : MonoBehaviour
         StartCoroutine(goToDive());
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(goToDive());
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
-        
+        Debug.Log("dolphin controller");
+        if(Input.GetKey(KeyCode.P))
+            Debug.Log("P has been clicked");
+        //Debug.Log(camera.GetComponent<CameraFollow>().cameraTarget[camera.GetComponent<CameraFollow>().index]);
     }
 
     IEnumerator goToDive()
