@@ -45,6 +45,10 @@ Press L to alterante between creatures
 Press E to go back to FPScontroller
 Press P while focused on dolphins to make them flip
 
+# Classes wrote myself
+- Steering Behaviours : Flocking.cs (creates the flock), FlockingBehaviour.cs (cohesion,seperation,alignment, influenced by lecture notes)
+- Flowfield code : Flowfieldgrid.cs (adapted from nature of code https://natureofcode.com/book/chapter-6-autonomous-agents/), FollowFlowfield.cs ( wrote myself )
+
 # What I'm most proud of
 I'm really proud of how the scene looks and the behaviours used to implement the scene. My favrioute behaviour is the flow field, the perlin noise flow field really makes it cool to watch the fish transverse. Flocking is another behaviour that's really cool, seeing fish move like that, and I am proud I managed to get it done before it was taught in class. Although not perfect, I'm proud of exploring new techniques such as behaviour trees and understand how they work, even though I didn't implement it completely right I hope to study it further and use it to create complex behaviours in the future. Overall I'm really glad how it turned out, I spent alot of time and it really turned out cool
 
