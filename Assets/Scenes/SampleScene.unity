@@ -28309,6 +28309,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5836915390553646561, guid: 15bbc59c61332e14f9b3a643d7366508,
         type: 3}
+      propertyPath: rows
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836915390553646561, guid: 15bbc59c61332e14f9b3a643d7366508,
+        type: 3}
+      propertyPath: column
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836915390553646561, guid: 15bbc59c61332e14f9b3a643d7366508,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 668954950}
